@@ -15,7 +15,7 @@ public class OknoSklep extends JFrame{
     private final JPanel panel_towary;
     private final JPanel panel_koszyk;
     //Pola tekstowe
-
+    private final JTextField textfield_ilosc;
     //Przyciski
     private final JButton button_dodaj;
     private final JButton button_usun;
@@ -23,7 +23,7 @@ public class OknoSklep extends JFrame{
     //Listy
     private JList lista_produktow;
     TowarySklep lista_towarow;
-    private JList lista_zamowien;
+    private final JList lista_zamowien;
     
     public OknoSklep(){
         setTitle("SKLEP ROPUCHA");
@@ -58,7 +58,6 @@ public class OknoSklep extends JFrame{
         add(panel_sklep);
         //Panel z towarami
         panel_towary = new JPanel();
-        //panel_towary.setLayout(new GridBagLayout());
         panel_towary.setBackground(Color.decode("#ffffcc"));
         panel_towary.setPreferredSize(new Dimension(528, 461));
         panel_towary.setBorder(BorderFactory.createLineBorder(Color.black,2));
@@ -104,7 +103,6 @@ public class OknoSklep extends JFrame{
           
         //Panel z koszykiem
         panel_koszyk = new JPanel();
-        //panel_logowanie2.setLayout(new GridBagLayout());
         panel_koszyk.setBackground(Color.decode("#ffffcc"));
         panel_koszyk.setPreferredSize(new Dimension(350, 461));
         panel_koszyk.setBorder(BorderFactory.createLineBorder(Color.black,2));
@@ -112,8 +110,8 @@ public class OknoSklep extends JFrame{
           //Koszyk, tabela z zamowieniem, kwota, usun element, zapłać
           JPanel panel_koszyk2=new JPanel();
           panel_koszyk2.setBackground(Color.decode("#ffffcc"));
-          panel_koszyk2.setPreferredSize(new Dimension(200, 100));
-          panel_koszyk2.setBounds(0,0,200,100);
+          panel_koszyk2.setPreferredSize(new Dimension(200, 80));
+          panel_koszyk2.setBounds(0,0,200,90);
           //Ustawianie zdjęcia koszyka
           BufferedImage koszyk;
           try {
@@ -128,7 +126,7 @@ public class OknoSklep extends JFrame{
           panel_koszyk.add(panel_koszyk2);
           JPanel panel_podglad_zamowienia=new JPanel();
           panel_podglad_zamowienia.setBackground(Color.decode("#ffffcc"));
-          panel_podglad_zamowienia.setPreferredSize(new Dimension(300, 300));
+          panel_podglad_zamowienia.setPreferredSize(new Dimension(300, 280));
           panel_podglad_zamowienia.setBounds(0,0,300,300);
           panel_koszyk.add(panel_podglad_zamowienia);
           lista_zamowien = new JList(lista_towarow.getListaTowarowWyswietl()); //zmienic na liste zamowien!!
@@ -137,20 +135,27 @@ public class OknoSklep extends JFrame{
           scroll_lista_zamowien.setPreferredSize(new Dimension(180, 250));
           scroll_lista_zamowien.setBorder(BorderFactory.createLineBorder(Color.black,1));
           panel_podglad_zamowienia.add(scroll_lista_zamowien);
-          panel_podglad_zamowienia.add(new JLabel("Łączna kwota zamówienia: "));    //zsumowac zamowienie
-          //Przyciski dodaj/usun produkt i zaplac
+          panel_podglad_zamowienia.add(new JLabel("Łączna kwota zamówienia: "+100.02));    //zsumowac zamowienie
+          //Przyciski dodaj/usun produkt i zaplac + pole ilosc
+          JPanel panel_przyciski= new JPanel(new GridLayout(0,2,5,5));
+          panel_przyciski.setPreferredSize(new Dimension(170, 70));
+          panel_przyciski.setBackground(Color.decode("#ffffcc"));
+          textfield_ilosc = new JTextField(2);
+          panel_przyciski.add(new JLabel("Ilosc:"));
+          panel_przyciski.add(textfield_ilosc);
           button_dodaj = new JButton("Dodaj");
           button_dodaj.setBackground(Color.decode("#999966"));
           button_dodaj.setBorder(BorderFactory.createEmptyBorder(5,10,5,30));
-          panel_koszyk.add(button_dodaj);
+          panel_przyciski.add(button_dodaj);
           button_usun = new JButton("Usun");
           button_usun.setBackground(Color.decode("#999966"));
           button_usun.setBorder(BorderFactory.createEmptyBorder(5,10,5,30));
-          panel_koszyk.add(button_usun);
+          panel_przyciski.add(button_usun);
           button_zaplac = new JButton("Zapłać");
           button_zaplac.setBackground(Color.decode("#999966"));
           button_zaplac.setBorder(BorderFactory.createEmptyBorder(5,10,5,30));
-          panel_koszyk.add(button_zaplac);
+          panel_przyciski.add(button_zaplac);
+          panel_koszyk.add(panel_przyciski);
           
       //Dodawanie paska menu
         JMenuBar mb=new JMenuBar();  
