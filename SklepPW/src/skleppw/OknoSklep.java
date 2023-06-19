@@ -2,6 +2,8 @@ package skleppw;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.logging.Level;
@@ -62,7 +64,7 @@ public class OknoSklep extends JFrame{
         panel_towary.setPreferredSize(new Dimension(528, 461));
         panel_towary.setBorder(BorderFactory.createLineBorder(Color.black,2));
         panel_sklep.add(panel_towary);
-          //Tabela z produktami
+          //Lista z produktami
           lista_towarow= new TowarySklep();
           TowarSklep testtowar1=new TowarSklep("BUŁKA",2.99,70);
           TowarSklep testtowar2=new TowarSklep("CHLEB",4.50,20);
@@ -164,6 +166,15 @@ public class OknoSklep extends JFrame{
         menu.add(menu_opcja1);
         mb.add(menu);
         setJMenuBar(mb);
+        
+      //Obsluga przyciskow
+        //Przycisk "Zapłać"
+        button_zaplac.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                JFrame fplatnosc=new OknoPlatnosci();
+            }
+        });
         
         setVisible(true);
         setResizable(false);
