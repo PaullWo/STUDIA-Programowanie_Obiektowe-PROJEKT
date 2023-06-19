@@ -11,6 +11,9 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 public class OknoRachunek extends JFrame{
+    private int zalogowanie;
+    private Sklep sklepROPUCHA;
+    private Uzytkownik uzytkownik;
     //Panele
     private JPanel panel_logo;
     private final JPanel panel_sklep;
@@ -19,7 +22,10 @@ public class OknoRachunek extends JFrame{
     private final JButton button_wroc;
     //Label
     private final JLabel label_rachunek;
-    public OknoRachunek(){
+    public OknoRachunek(int zalogowanie,Uzytkownik uzytkownik,Sklep sklep){
+        this.zalogowanie=zalogowanie;
+        this.uzytkownik=uzytkownik;
+        sklepROPUCHA=sklep;
         setTitle("SKLEP ROPUCHA");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));

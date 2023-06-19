@@ -12,6 +12,9 @@ import javax.imageio.ImageIO;
 
 //Faktura dla niezalogowanych
 public class OknoFaktura extends JFrame{
+    private int zalogowanie;
+    private Sklep sklepROPUCHA;
+    private Uzytkownik uzytkownik;
     //Panele
     private JPanel panel_logo;
     private final JPanel panel_sklep;
@@ -28,7 +31,10 @@ public class OknoFaktura extends JFrame{
     //Przyciski
     private final JButton button_zatwierdz;
 
-    public OknoFaktura(){
+    public OknoFaktura(int zalogowanie,Uzytkownik uzytkownik,Sklep sklep){
+        this.zalogowanie=zalogowanie;
+        this.uzytkownik=uzytkownik;
+        sklepROPUCHA=sklep;
         setTitle("SKLEP ROPUCHA");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));

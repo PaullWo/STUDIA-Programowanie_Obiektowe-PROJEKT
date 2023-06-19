@@ -12,6 +12,8 @@ import javax.imageio.ImageIO;
 
 public class OknoPlatnosci extends JFrame{
     private int zalogowanie;
+    private Sklep sklepROPUCHA;
+    private Uzytkownik uzytkownik;
     //Panele
     private JPanel panel_logo;
     private final JPanel panel_sklep;
@@ -42,8 +44,12 @@ public class OknoPlatnosci extends JFrame{
     private JRadioButton radio_faktura;
 
 
-    public OknoPlatnosci(int zalogowanie){
+    public OknoPlatnosci(int zalogowanie,Uzytkownik uzytkownik,Sklep sklep){
         this.zalogowanie=zalogowanie;
+        this.uzytkownik=uzytkownik;
+        sklepROPUCHA=sklep;
+                //TEST
+                System.out.println(zalogowanie);
         setTitle("SKLEP ROPUCHA");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
@@ -167,13 +173,13 @@ public class OknoPlatnosci extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 if(radio_rachunek.isSelected()){
                     dispose();
-                    JFrame frachunek=new OknoRachunek();
+                    JFrame frachunek=new OknoRachunek(zalogowanie,uzytkownik,sklepROPUCHA);
                 }else if(radio_faktura.isSelected()){
                     if(zalogowanie==1){
                         
                     }else{
                         dispose();
-                        JFrame frachunek=new OknoFaktura();
+                        JFrame frachunek=new OknoFaktura(zalogowanie,uzytkownik,sklepROPUCHA);
                     }
                 }else{
                     //Okno dialogowe z komunikatem

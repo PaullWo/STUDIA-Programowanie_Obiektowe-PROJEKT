@@ -12,6 +12,8 @@ import javax.imageio.ImageIO;
 
 public class OknoGlowne extends JFrame{
     private int zalogowanie;
+    private Sklep sklepROPUCHA;
+    private Uzytkownik uzytkownik;
     //Panele
     private JPanel panel_logo;
     private final JPanel panel_logowanie;
@@ -26,7 +28,16 @@ public class OknoGlowne extends JFrame{
     private final JButton button_gosc;
     
     public OknoGlowne(){
+        sklepROPUCHA=new Sklep();
+        uzytkownik=null;
+                //TEST
+                Uzytkownik u1=new Uzytkownik("123","123");
+                Uzytkownik u2=new Uzytkownik("user","123");
+                sklepROPUCHA.TESTDODAJ(u2);
+                sklepROPUCHA.TESTDODAJ(u1);
         zalogowanie=0;
+                //TEST
+                System.out.println(zalogowanie);
         setTitle("SKLEP ROPUCHA");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
@@ -111,10 +122,43 @@ public class OknoGlowne extends JFrame{
         button_gosc.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                JFrame f=new OknoSklep(zalogowanie);
+                JFrame f=new OknoSklep(zalogowanie,uzytkownik,sklepROPUCHA);
             }
         });
-        
+        //Przycisk "Zarejestruj"
+        button_zarejestruj.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(textfield_login.getText().isEmpty() || textfield_haslo.getText().isEmpty()){
+                    //Okno dialogowe z komunikatem
+                    JOptionPane.showMessageDialog(panel_logowanie2,"Wypełnij wszytskie pola!"); 
+                }else{
+                    String login=textfield_login.getText();
+                    String haslo=textfield_haslo.getText();
+                    Uzytkownik uzytkownik=new Uzytkownik(login,haslo);
+                    sklepROPUCHA.dodajUzytkownika(uzytkownik, panel_logowanie2);
+                }
+            }
+        });
+        button_zaloguj.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(textfield_login.getText().isEmpty() || textfield_haslo.getText().isEmpty()){
+                    //Okno dialogowe z komunikatem
+                    JOptionPane.showMessageDialog(panel_logowanie2,"Wypełnij wszytskie pola!"); 
+                }else{
+                    String login=textfield_login.getText();
+                    String haslo=textfield_haslo.getText();
+                    if(sklepROPUCHA.logowanie(login, haslo)==-1){
+                        JOptionPane.showMessageDialog(panel_logowanie2,"Dane podane do logowania są nieprawidłowe!");
+                    }else{
+                        zalogowanie=1;
+                        uzytkownik=sklepROPUCHA.getUzytkownikID(sklepROPUCHA.logowanie(login, haslo));
+                        System.out.println(uzytkownik.getLogin());
+                        dispose();
+                        JFrame f=new OknoSklep(zalogowanie,uzytkownik,sklepROPUCHA);
+                    }
+                }
+            }
+        });
         setVisible(true);
         setResizable(false);
     }
