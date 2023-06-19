@@ -12,6 +12,9 @@ import javax.imageio.ImageIO;
 
 //Wyswietlanie faktury z danymi
 public class OknoFakturaDane extends JFrame{
+    private int zalogowanie;
+    private Sklep sklepROPUCHA;
+    private Uzytkownik uzytkownik;
     //Panele
     private JPanel panel_logo;
     private final JPanel panel_sklep;
@@ -20,7 +23,10 @@ public class OknoFakturaDane extends JFrame{
     private final JButton button_wroc;
     //Label
     private final JLabel label_faktura;
-    public OknoFakturaDane(String imie,String nazwisko,String dzien,String miesiac,String rok,String miejscowosc){
+    public OknoFakturaDane(String imie,String nazwisko,String dzien,String miesiac,String rok,String miejscowosc,int zalogowanie,Uzytkownik uzytkownik,Sklep sklep){
+        this.zalogowanie=zalogowanie;
+        this.uzytkownik=uzytkownik;
+        sklepROPUCHA=sklep;
         setTitle("SKLEP ROPUCHA");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
@@ -75,7 +81,7 @@ public class OknoFakturaDane extends JFrame{
         button_wroc.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                     dispose();
-                    JFrame f=new OknoGlowne();    
+                    JFrame f=new OknoGlowne(sklepROPUCHA);    
             }
         });
         setVisible(true);

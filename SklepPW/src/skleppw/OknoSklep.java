@@ -34,9 +34,6 @@ public class OknoSklep extends JFrame{
         this.zalogowanie=zalogowanie;
         this.uzytkownik=uzytkownik;
         sklepROPUCHA=sklep;
-                //TEST
-                System.out.println(zalogowanie);
-        System.out.println(zalogowanie);
         setTitle("SKLEP ROPUCHA");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
@@ -171,6 +168,17 @@ public class OknoSklep extends JFrame{
       //Dodawanie paska menu
         JMenuBar mb=new JMenuBar();  
         JMenu menu=new JMenu("Menu");
+        if(zalogowanie==1){
+            JMenuItem menu_opcja2=new JMenuItem("Zmień dane do faktury");
+            menu.add(menu_opcja2);
+            //Obsługa przycisku w menu "Zmień dane do faktury"
+            menu_opcja2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                JFrame fdane=new OknoWprowadzanieDanych(zalogowanie,uzytkownik,sklepROPUCHA);
+            }
+        });
+        }
         JMenuItem menu_opcja1=new JMenuItem("Zaloguj jako pracownik");
         menu.add(menu_opcja1);
         mb.add(menu);
@@ -184,7 +192,6 @@ public class OknoSklep extends JFrame{
                 JFrame fplatnosc=new OknoPlatnosci(zalogowanie,uzytkownik,sklepROPUCHA);
             }
         });
-        
         setVisible(true);
         setResizable(false);
     }

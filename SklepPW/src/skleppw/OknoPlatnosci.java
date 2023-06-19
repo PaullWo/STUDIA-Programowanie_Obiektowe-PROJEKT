@@ -48,8 +48,6 @@ public class OknoPlatnosci extends JFrame{
         this.zalogowanie=zalogowanie;
         this.uzytkownik=uzytkownik;
         sklepROPUCHA=sklep;
-                //TEST
-                System.out.println(zalogowanie);
         setTitle("SKLEP ROPUCHA");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
@@ -176,10 +174,11 @@ public class OknoPlatnosci extends JFrame{
                     JFrame frachunek=new OknoRachunek(zalogowanie,uzytkownik,sklepROPUCHA);
                 }else if(radio_faktura.isSelected()){
                     if(zalogowanie==1){
-                        
+                        dispose();
+                        JFrame ffaktura1=new OknoFakturaDane(uzytkownik.getImie(),uzytkownik.getMiesiac(),uzytkownik.getDzien(),uzytkownik.getMiesiac(),uzytkownik.getRok(),uzytkownik.getMiejscowosc(),zalogowanie,uzytkownik,sklepROPUCHA);
                     }else{
                         dispose();
-                        JFrame frachunek=new OknoFaktura(zalogowanie,uzytkownik,sklepROPUCHA);
+                        JFrame ffaktura2=new OknoFaktura(zalogowanie,uzytkownik,sklepROPUCHA);
                     }
                 }else{
                     //Okno dialogowe z komunikatem

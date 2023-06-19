@@ -10,8 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-//Faktura dla niezalogowanych
-public class OknoFaktura extends JFrame{
+//Okno do wprowadzania danych
+public class OknoWprowadzanieDanych extends JFrame{
     private int zalogowanie;
     private Sklep sklepROPUCHA;
     private Uzytkownik uzytkownik;
@@ -31,7 +31,7 @@ public class OknoFaktura extends JFrame{
     //Przyciski
     private final JButton button_zatwierdz;
 
-    public OknoFaktura(int zalogowanie,Uzytkownik uzytkownik,Sklep sklep){
+    public OknoWprowadzanieDanych(int zalogowanie,Uzytkownik uzytkownik,Sklep sklep){
         this.zalogowanie=zalogowanie;
         this.uzytkownik=uzytkownik;
         sklepROPUCHA=sklep;
@@ -114,8 +114,11 @@ public class OknoFaktura extends JFrame{
                     String dzien=(String)combobox_dzien.getSelectedItem();
                     String miesiac=(String)combobox_miesiac.getSelectedItem();
                     String rok=textfield_rok.getText();
+                    uzytkownik.ustawDane(imie, nazwisko, miejscowosc, dzien, miesiac, rok);
+                    sklepROPUCHA.getUzytkownikID(sklepROPUCHA.logowanie(uzytkownik.getLogin(), uzytkownik.getHaslo())).ustawDane(imie, nazwisko, miejscowosc, dzien, miesiac, rok);
+                    JOptionPane.showMessageDialog(panel_sklep,"Dane zostały zapamietane!");
                     dispose();
-                    JFrame f=new OknoFakturaDane(imie,nazwisko,dzien,miesiac,rok,miejscowosc,zalogowanie,uzytkownik,sklepROPUCHA);  
+                    JFrame f=new OknoSklep(zalogowanie,uzytkownik,sklepROPUCHA);  
                 }
             }
         });
@@ -124,4 +127,3 @@ public class OknoFaktura extends JFrame{
 
     }
 }
-

@@ -80,7 +80,7 @@ public class OknoRachunek extends JFrame{
         button_wroc.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                     dispose();
-                    JFrame f=new OknoGlowne();    
+                    JFrame f=new OknoGlowne(sklepROPUCHA);    
             }
         });
         setVisible(true);

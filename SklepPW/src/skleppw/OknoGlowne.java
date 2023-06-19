@@ -27,8 +27,8 @@ public class OknoGlowne extends JFrame{
     private final JButton button_zarejestruj;
     private final JButton button_gosc;
     
-    public OknoGlowne(){
-        sklepROPUCHA=new Sklep();
+    public OknoGlowne(Sklep sklep){
+        sklepROPUCHA=sklep;
         uzytkownik=null;
                 //TEST
                 Uzytkownik u1=new Uzytkownik("123","123");
@@ -36,8 +36,6 @@ public class OknoGlowne extends JFrame{
                 sklepROPUCHA.TESTDODAJ(u2);
                 sklepROPUCHA.TESTDODAJ(u1);
         zalogowanie=0;
-                //TEST
-                System.out.println(zalogowanie);
         setTitle("SKLEP ROPUCHA");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
@@ -152,9 +150,13 @@ public class OknoGlowne extends JFrame{
                     }else{
                         zalogowanie=1;
                         uzytkownik=sklepROPUCHA.getUzytkownikID(sklepROPUCHA.logowanie(login, haslo));
-                        System.out.println(uzytkownik.getLogin());
-                        dispose();
-                        JFrame f=new OknoSklep(zalogowanie,uzytkownik,sklepROPUCHA);
+                        if(uzytkownik.sprawdzDane()){
+                            dispose();
+                            JFrame fdane=new OknoWprowadzanieDanych(zalogowanie,uzytkownik,sklepROPUCHA);
+                        }else{
+                            dispose();
+                            JFrame f=new OknoSklep(zalogowanie,uzytkownik,sklepROPUCHA);
+                        }
                     }
                 }
             }
