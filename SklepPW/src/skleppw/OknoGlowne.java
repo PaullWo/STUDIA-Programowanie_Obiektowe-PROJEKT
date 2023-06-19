@@ -2,6 +2,8 @@ package skleppw;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.logging.Level;
@@ -84,15 +86,15 @@ public class OknoGlowne extends JFrame{
         panel_logowanie2.add(textfield_haslo);
         button_zaloguj = new JButton("Zaloguj");
         button_zaloguj.setBackground(Color.decode("#999966"));
-        button_zaloguj.setBorder(BorderFactory.createEmptyBorder(5,10,5,50));
+        button_zaloguj.setBorder(BorderFactory.createEmptyBorder(5,10,5,30));
         panel_logowanie2.add(button_zaloguj);
         button_zarejestruj = new JButton("Zarejestruj");
         button_zarejestruj.setBackground(Color.decode("#999966"));
-        button_zarejestruj.setBorder(BorderFactory.createEmptyBorder(5,10,5,50));
+        button_zarejestruj.setBorder(BorderFactory.createEmptyBorder(5,10,5,30));
         panel_logowanie2.add(button_zarejestruj);
         button_gosc = new JButton("Kontynuuj jako gość");
         button_gosc.setBackground(Color.decode("#999966"));
-        button_gosc.setBorder(BorderFactory.createEmptyBorder(5,10,5,50));
+        button_gosc.setBorder(BorderFactory.createEmptyBorder(5,10,5,30));
         panel_logowanie2.add(button_gosc);
       //Dodawanie paska menu
         JMenuBar mb=new JMenuBar();  
@@ -101,6 +103,15 @@ public class OknoGlowne extends JFrame{
         menu.add(menu_opcja1);
         mb.add(menu);
         setJMenuBar(mb);
+        
+      //Obsluga przyciskow
+        //Przycisk "Kontynuuj jako gosc"
+        button_gosc.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                JFrame f=new OknoSklep();
+            }
+        });
         
         setVisible(true);
         setResizable(false);
