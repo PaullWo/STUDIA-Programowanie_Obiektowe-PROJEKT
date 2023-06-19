@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 public class OknoGlowne extends JFrame{
+    private int zalogowanie;
     //Panele
     private JPanel panel_logo;
     private final JPanel panel_logowanie;
@@ -25,6 +26,7 @@ public class OknoGlowne extends JFrame{
     private final JButton button_gosc;
     
     public OknoGlowne(){
+        zalogowanie=0;
         setTitle("SKLEP ROPUCHA");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
@@ -109,7 +111,7 @@ public class OknoGlowne extends JFrame{
         button_gosc.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                JFrame f=new OknoSklep();
+                JFrame f=new OknoSklep(zalogowanie);
             }
         });
         

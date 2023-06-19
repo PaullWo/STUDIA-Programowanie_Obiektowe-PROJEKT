@@ -10,15 +10,23 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
+//Faktura dla niezalogowanych
 public class OknoFaktura extends JFrame{
     //Panele
     private JPanel panel_logo;
     private final JPanel panel_sklep;
+    private final JPanel panel_sklep1;
+
     //Pola tekstowe
-
+    private JTextField textfield_imie;
+    private JTextField textfield_nazwisko;
+    private JTextField textfield_miejscowosc;
+    private JTextField textfield_rok;
+    //Combobox
+    private JComboBox combobox_dzien;
+    private JComboBox combobox_miesiac;
     //Przyciski
-
-    //Label
+    private final JButton button_zatwierdz;
 
     public OknoFaktura(){
         setTitle("SKLEP ROPUCHA");
@@ -45,16 +53,66 @@ public class OknoFaktura extends JFrame{
         }
         add(panel_logo);
       //Panel dolny
+        panel_sklep1 = new JPanel();
+        panel_sklep1.setLayout(new GridBagLayout());
+        panel_sklep1.setBackground(Color.decode("#ffffcc"));
+        panel_sklep1.setPreferredSize(new Dimension(884, 489));
+        panel_sklep1.setBorder(BorderFactory.createLineBorder(Color.black,3));
+        add(panel_sklep1);
         panel_sklep = new JPanel();
-        panel_sklep.setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
+        panel_sklep.setLayout(new GridLayout(0,2,10,10));
         panel_sklep.setBackground(Color.decode("#ffffcc"));
-        panel_sklep.setPreferredSize(new Dimension(884, 489));
-        panel_sklep.setBorder(BorderFactory.createLineBorder(Color.black,3));
-        add(panel_sklep);
-         panel_sklep.add(new JLabel("FAKTURA"));
-
+        panel_sklep.setPreferredSize(new Dimension(300, 250));
+        panel_sklep1.add(panel_sklep);
+        panel_sklep.add(new JLabel("Podaj dane do faktury: "));
+        panel_sklep.add(new JLabel(" "));
+        panel_sklep.add(new JLabel("Imię: "));
+        textfield_imie = new JTextField(10);
+        panel_sklep.add(textfield_imie);
+        panel_sklep.add(new JLabel("Nazwisko: "));
+        textfield_nazwisko = new JTextField(10);
+        panel_sklep.add(textfield_nazwisko);
+        panel_sklep.add(new JLabel("Miejscowość: "));
+        textfield_miejscowosc = new JTextField(10);
+        panel_sklep.add(textfield_miejscowosc);
+        panel_sklep.add(new JLabel("Dzien urodzenia: "));
+        String[] dni=new String[31];
+        for(int i=0;i<31;i++){
+            dni[i]=Integer.toString(i+1);
+        }
+        combobox_dzien=new JComboBox(dni);
+        panel_sklep.add(combobox_dzien);
+        panel_sklep.add(new JLabel("Miesiąc urodzenia: "));
+        String[] miesiace={"styczeń","luty","marzec","kwiecień","maj","czerwiec","lipiec","sierpień","wrzesień","październik","listopad","grudzień"};
+        combobox_miesiac=new JComboBox(miesiace);
+        panel_sklep.add(combobox_miesiac);
+        panel_sklep.add(new JLabel("Rok urodzenia: "));
+        textfield_rok = new JTextField(10);
+        panel_sklep.add(textfield_rok);
+        button_zatwierdz = new JButton("Zatwierdź");
+        button_zatwierdz.setBackground(Color.decode("#999966"));
+        button_zatwierdz.setBorder(BorderFactory.createEmptyBorder(5,10,5,30));
+        panel_sklep.add(button_zatwierdz);
+  
       //Obsluga przyciskow
-        
+        button_zatwierdz.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(textfield_imie.getText().isEmpty() || textfield_nazwisko.getText().isEmpty() || textfield_miejscowosc.getText().isEmpty() || textfield_rok.getText().isEmpty()
+                        || combobox_dzien.getSelectedItem()==null || combobox_miesiac.getSelectedItem()==null){
+                    //Okno dialogowe z komunikatem
+                    JOptionPane.showMessageDialog(panel_sklep,"Wypełnij wszytskie pola!"); 
+                }else{
+                    String imie=textfield_imie.getText();
+                    String nazwisko=textfield_nazwisko.getText();
+                    String miejscowosc=textfield_miejscowosc.getText();
+                    String dzien=(String)combobox_dzien.getSelectedItem();
+                    String miesiac=(String)combobox_miesiac.getSelectedItem();
+                    String rok=textfield_rok.getText();
+                    dispose();
+                    JFrame f=new OknoFakturaDane(imie,nazwisko,dzien,miesiac,rok,miejscowosc);  
+                }
+            }
+        });
         setVisible(true);
         setResizable(false);
 

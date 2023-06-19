@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 public class OknoPlatnosci extends JFrame{
+    private int zalogowanie;
     //Panele
     private JPanel panel_logo;
     private final JPanel panel_sklep;
@@ -41,7 +42,8 @@ public class OknoPlatnosci extends JFrame{
     private JRadioButton radio_faktura;
 
 
-    public OknoPlatnosci(){
+    public OknoPlatnosci(int zalogowanie){
+        this.zalogowanie=zalogowanie;
         setTitle("SKLEP ROPUCHA");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
@@ -167,8 +169,12 @@ public class OknoPlatnosci extends JFrame{
                     dispose();
                     JFrame frachunek=new OknoRachunek();
                 }else if(radio_faktura.isSelected()){
-                    dispose();
-                    JFrame frachunek=new OknoFaktura();
+                    if(zalogowanie==1){
+                        
+                    }else{
+                        dispose();
+                        JFrame frachunek=new OknoFaktura();
+                    }
                 }else{
                     //Okno dialogowe z komunikatem
                     JOptionPane.showMessageDialog(panel_placenie,"Wybierz fakturę/rachunek."); 

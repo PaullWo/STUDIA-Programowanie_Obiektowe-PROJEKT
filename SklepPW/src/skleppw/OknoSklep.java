@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 public class OknoSklep extends JFrame{
+    private int zalogowanie;
     //Panele
     private JPanel panel_logo;
     private final JPanel panel_sklep;
@@ -27,7 +28,8 @@ public class OknoSklep extends JFrame{
     TowarySklep lista_towarow;
     private final JList lista_zamowien;
     
-    public OknoSklep(){
+    public OknoSklep(int zalogowanie){
+        this.zalogowanie=zalogowanie;
         setTitle("SKLEP ROPUCHA");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
@@ -172,7 +174,7 @@ public class OknoSklep extends JFrame{
         button_zaplac.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                JFrame fplatnosc=new OknoPlatnosci();
+                JFrame fplatnosc=new OknoPlatnosci(zalogowanie);
             }
         });
         
