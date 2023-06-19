@@ -160,7 +160,22 @@ public class OknoPlatnosci extends JFrame{
         panel_placenie.add(button_zaplac);
 
       //Obsluga przyciskow
-      
+        //Przycisk "Zapłać"
+        button_zaplac.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(radio_rachunek.isSelected()){
+                    dispose();
+                    JFrame frachunek=new OknoRachunek();
+                }else if(radio_faktura.isSelected()){
+                    dispose();
+                    JFrame frachunek=new OknoFaktura();
+                }else{
+                    //Okno dialogowe z komunikatem
+                    JOptionPane.showMessageDialog(panel_placenie,"Wybierz fakturę/rachunek."); 
+                }
+            }
+        });
+        
         setVisible(true);
         setResizable(false);
 
