@@ -107,6 +107,12 @@ public class OknoGlowne extends JFrame{
         JMenu menu=new JMenu("Menu");
         JMenuItem menu_opcja1=new JMenuItem("Zaloguj jako pracownik");
         menu.add(menu_opcja1);
+        menu_opcja1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                JFrame fadmin=new OknoLogowanieAdmin(sklepROPUCHA);
+            }
+        });
         mb.add(menu);
         setJMenuBar(mb);
         

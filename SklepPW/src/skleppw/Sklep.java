@@ -67,6 +67,13 @@ public class Sklep implements Opisy,Serializable{
         }
         return pomoc;
     }
+    public DefaultListModel<String> getListaTowarowWyswietlAdmin(){
+        DefaultListModel<String> pomoc=new DefaultListModel<>();
+        for(int i=0;i<lista_towarow.getSize();i++){
+            pomoc.add(i, lista_towarow.elementAt(i).opisTowarSklep());
+        }
+        return pomoc;
+    }
     public void usunTowarIndex(int index){
         lista_towarow.remove(index); 
     }

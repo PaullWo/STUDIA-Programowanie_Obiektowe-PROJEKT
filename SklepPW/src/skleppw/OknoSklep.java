@@ -156,14 +156,20 @@ public class OknoSklep extends JFrame{
             menu.add(menu_opcja2);
             //Obsługa przycisku w menu "Zmień dane do faktury"
             menu_opcja2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                JFrame fdane=new OknoWprowadzanieDanych(zalogowanie,uzytkownik,sklepROPUCHA);
-            }
-        });
+                public void actionPerformed(ActionEvent e) {
+                    dispose();
+                    JFrame fdane=new OknoWprowadzanieDanych(zalogowanie,uzytkownik,sklepROPUCHA);
+                }
+            });
         }
         JMenuItem menu_opcja1=new JMenuItem("Zaloguj jako pracownik");
         menu.add(menu_opcja1);
+        menu_opcja1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                JFrame fadmin=new OknoLogowanieAdmin(sklepROPUCHA);
+            }
+        });
         mb.add(menu);
         setJMenuBar(mb);
         
