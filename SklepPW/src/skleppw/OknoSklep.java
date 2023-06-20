@@ -175,8 +175,24 @@ public class OknoSklep extends JFrame{
                 JFrame fplatnosc=new OknoPlatnosci(zalogowanie,uzytkownik,sklepROPUCHA);
             }
         });
-        //Przycisk "Dodaj"
-        setVisible(true);
+        //Przycisk "Usun"
+        setResizable(false);
+        button_usun.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(lista_produktow.getSelectedValue()!=null){
+                    String sprawdzany_opis=(String)lista_zamowien.getSelectedValue();
+                    ZakupionyTowar pomocniczy_zakupiony_towar=pomocniczy_zakup.getTowarOpis(sprawdzany_opis);
+                    pomocniczy_zakup.usunTowar(pomocniczy_zakupiony_towar);
+                    label_koszt.setText("Łączna kwota zamówienia: "+pomocniczy_zakup.getKoszt()+"zł");
+                    int selectedIndex = lista_zamowien.getSelectedIndex();
+                    if (selectedIndex != -1) {
+                       model.remove(selectedIndex);
+                    }
+                    System.out.println(pomocniczy_zakup.opisHTML());
+                }
+            }
+        });
+        //Przycisk "Usun"
         setResizable(false);
         button_dodaj.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -185,16 +201,14 @@ public class OknoSklep extends JFrame{
                     String sprawdzany_opis=(String)lista_produktow.getSelectedValue();
                     TowarSklep pomocniczy_towar=sklepROPUCHA.getTowarOpis(sprawdzany_opis);
                     ZakupionyTowar pomocniczy_zakupiony_towar=new ZakupionyTowar(pomocniczy_towar,ilosc);
-                    //System.out.println(lista_produktow.getSelectedValue());
-                    //System.out.println(ilosc); 
-                    //System.out.println(pomocniczy_zakupiony_towar.opisHTML());
                     pomocniczy_zakup.dodajTowar(pomocniczy_zakupiony_towar);
-                    //System.out.println(pomocniczy_zakup.opisHTML());
                     label_koszt.setText("Łączna kwota zamówienia: "+pomocniczy_zakup.getKoszt()+"zł");
                     model.addElement(pomocniczy_zakupiony_towar.opis());
+                    System.out.println(pomocniczy_zakup.opisHTML());
                 }
             }
         });
+        
         setVisible(true);
         setResizable(false);
     }

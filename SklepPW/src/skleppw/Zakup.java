@@ -69,6 +69,14 @@ public class Zakup implements Opisy, Serializable{
     public void usunTowarIndex(int index){
         lista_zakupionych_towarow.remove(index); 
     }
+    public void usunTowar(ZakupionyTowar towar){
+        for(int i=0;i<lista_zakupionych_towarow.size();i++){
+            if(lista_zakupionych_towarow.get(i)==towar){
+                laczny_koszt-=lista_zakupionych_towarow.get(i).getKoszt();
+                lista_zakupionych_towarow.remove(i);
+            }
+        }
+    }
     @Override
     public String opis(){
         double reszta=getZaplaconaKwota()-getKoszt();
@@ -87,5 +95,13 @@ public class Zakup implements Opisy, Serializable{
         opis+="<html><b>Wydana reszta: </b></html>"+reszta+"<html>zl<br></html>";
         opis+="<html><b>Data: </b></html>"+getData()+"<html><br></html>";
         return opis;
+    }
+    public ZakupionyTowar getTowarOpis(String sprawdzany_opis){
+        for(int i=0;i<lista_zakupionych_towarow.size();i++){
+            if(lista_zakupionych_towarow.get(i).opis().equals(sprawdzany_opis)){
+                return lista_zakupionych_towarow.get(i);
+            }
+        }
+            return null;    
     }
 }
