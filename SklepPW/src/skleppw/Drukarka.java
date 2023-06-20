@@ -16,7 +16,7 @@ public class Drukarka extends Sprzet implements Serializable{
     public double getIloscPapieru(){
         return ilosc_papieru;
     }
-    public void setIloscPieniedzy(int ilosc_papieru){
+    public void setIloscPapieru(int ilosc_papieru){
         this.ilosc_papieru=ilosc_papieru;
     }
     public void dodajPapier(int ilosc_papieru){

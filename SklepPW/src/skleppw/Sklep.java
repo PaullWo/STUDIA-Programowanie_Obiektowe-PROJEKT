@@ -85,6 +85,34 @@ public class Sklep implements Opisy,Serializable{
         }
             return null;    
     }
+    public void usunTowarNazwa(String nazwa,JPanel panel){
+        int pomoc=0;
+        for(int i=0;i<lista_towarow.getSize();i++){
+            if(lista_towarow.elementAt(i).getNazwa().equals(nazwa)){
+                lista_towarow.remove(i);
+                pomoc=1;
+                JOptionPane.showMessageDialog(panel,"Zmiany będą widoczne po ponownym zalogowaniu!");
+            }
+        }
+        if(pomoc==0){
+            JOptionPane.showMessageDialog(panel,"Nie ma takiego towaru!"); 
+        }
+    }
+    public void edytujTowarNazwa(String nazwa,JPanel panel,String nazwa_nowa,double cena,int ilosc){
+        int pomoc=0;
+        for(int i=0;i<lista_towarow.getSize();i++){
+            if(lista_towarow.elementAt(i).getNazwa().equals(nazwa)){
+                lista_towarow.elementAt(i).setNazwa(nazwa_nowa);
+                lista_towarow.elementAt(i).setCena(cena);
+                lista_towarow.elementAt(i).setIloscNaStanie(ilosc);
+                pomoc=1;
+                JOptionPane.showMessageDialog(panel,"Zmiany będą widoczne po ponownym zalogowaniu!");
+            }
+        }
+        if(pomoc==0){
+            JOptionPane.showMessageDialog(panel,"Nie ma takiego towaru!"); 
+        }
+    }
     //Obsluga uzytkownikow
     public void TESTDODAJ(Uzytkownik uzytkownik){
         lista_uzytkownikow.add(uzytkownik);

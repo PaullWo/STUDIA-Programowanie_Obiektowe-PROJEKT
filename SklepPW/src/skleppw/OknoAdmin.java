@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 
 public class OknoAdmin extends JFrame{
     private Sklep sklepROPUCHA;
+    private DefaultListModel<String> model;
     //Panele
     private JPanel panel_logo;
     private JPanel panel_logowanie;
@@ -28,19 +29,23 @@ public class OknoAdmin extends JFrame{
     private final JTextField textfield_ilosc_dodaj;
     private final JTextField textfield_ilosc_papieru;
     private final JTextField textfield_ilosc_pieniedzy;
+    //Buttony
     private final JButton button_usun;
     private final JButton button_edytuj;
     private final JButton button_dodaj;
     private final JButton button_wplatomat;
     private final JButton button_drukarka;
     private final JButton button_awarie;
+    private final JButton button_wyloguj;
+    
     //Label
-    //private final JLabel label_lista;
     private final JLabel label_edycja;
     private final JLabel label_dodawanie;
     private final JLabel label_wplatomat;
     private final JLabel label_drukarka;
-    
+    private JLabel label_papier;
+    private JLabel label_pieniadze;
+    private JList lista_produktow;
     public OknoAdmin(Sklep sklep){
         sklepROPUCHA=sklep;
         setTitle("SKLEP ROPUCHA-tryb administratora");
@@ -69,7 +74,7 @@ public class OknoAdmin extends JFrame{
         JPanel panel_logowanie=new JPanel();
         panel_logowanie.setLayout(new GridBagLayout());
         panel_logowanie.setBackground(Color.decode("#ffffcc"));
-        panel_logowanie.setPreferredSize(new Dimension(884, 466));
+        panel_logowanie.setPreferredSize(new Dimension(884, 490));
         panel_logowanie.setBounds(0,100,884,462);
         panel_logowanie.setBorder(BorderFactory.createLineBorder(Color.black,3));
         add(panel_logowanie);
@@ -78,10 +83,17 @@ public class OknoAdmin extends JFrame{
         panel_lewy.setBackground(Color.decode("#ffffcc"));
         panel_lewy.setPreferredSize(new Dimension(400, 450));
         panel_logowanie.add(panel_lewy);
+        //Lista towarow
+        model = sklepROPUCHA.getListaTowarowWyswietlAdmin();
+        lista_produktow = new JList(model);
+        //Scroll do listy
+        JScrollPane scroll_lista_produktow = new JScrollPane();
+        scroll_lista_produktow.setViewportView(lista_produktow);
+        panel_lewy.add(scroll_lista_produktow);
         panel_prawy = new JPanel();
         panel_prawy.setLayout(new GridLayout(0,2,10,10));
         panel_prawy.setBackground(Color.decode("#ffffcc"));
-        panel_prawy.setPreferredSize(new Dimension(400, 450));
+        panel_prawy.setPreferredSize(new Dimension(450, 450));
         panel_logowanie.add(panel_prawy);
         
         label_edycja=new JLabel("USUN/EDYTUJ TOWAR:");
@@ -89,6 +101,7 @@ public class OknoAdmin extends JFrame{
         panel_prawy.add(new JLabel(""));
         panel_prawy.add(new JLabel("Podaj nazwe edytowanego towaru:"));
         textfield_nazwa = new JTextField(10);
+        textfield_nazwa.setBorder(BorderFactory.createLineBorder(Color.black));
         panel_prawy.add(textfield_nazwa);
         button_usun = new JButton("Usuń");
         button_usun.setBackground(Color.decode("#999966"));
@@ -146,7 +159,8 @@ public class OknoAdmin extends JFrame{
         button_wplatomat.setBackground(Color.decode("#999966"));
         button_wplatomat.setBorder(BorderFactory.createEmptyBorder(5,10,5,30));
         panel_prawy.add(button_wplatomat);
-        panel_prawy.add(new JLabel("Aktualna ilość: "+sklepROPUCHA.getWplatomat().getIloscPieniedzy()));
+        label_pieniadze=new JLabel("Aktualna ilość: "+sklepROPUCHA.getWplatomat().getIloscPieniedzy());
+        panel_prawy.add(label_pieniadze);
         
         label_drukarka=new JLabel("DRUKARKA:");
         panel_prawy.add(label_drukarka);
@@ -159,12 +173,18 @@ public class OknoAdmin extends JFrame{
         button_drukarka.setBackground(Color.decode("#999966"));
         button_drukarka.setBorder(BorderFactory.createEmptyBorder(5,10,5,30));
         panel_prawy.add(button_drukarka);
-        panel_prawy.add(new JLabel("Aktualna ilość: "+sklepROPUCHA.getDrukarka().getIloscPapieru()));
+        label_papier=new JLabel("Aktualna ilość: "+sklepROPUCHA.getDrukarka().getIloscPapieru());
+        panel_prawy.add(label_papier);
         
         button_awarie = new JButton("Sprawdź awarie");
         button_awarie.setBackground(Color.decode("#999966"));
         button_awarie.setBorder(BorderFactory.createEmptyBorder(5,10,5,30));
         panel_prawy.add(button_awarie);
+        panel_prawy.add(new JLabel(""));
+        button_wyloguj = new JButton("Zapisz i wyloguj");
+        button_wyloguj.setBackground(Color.decode("#999966"));
+        button_wyloguj.setBorder(BorderFactory.createEmptyBorder(5,10,5,30));
+        panel_prawy.add(button_wyloguj);
 
 
      
@@ -172,37 +192,71 @@ public class OknoAdmin extends JFrame{
         //Przycisk "usun"
         button_usun.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+                String nazwa=textfield_nazwa.getText();
+                sklepROPUCHA.usunTowarNazwa(nazwa,panel_prawy);
             }
         });
         //Przycisk "edytuj"
         button_edytuj.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+               String nazwa=textfield_nazwa.getText();
+               String nazwa_nowa=textfield_nazwa_nowa.getText(); 
+               int ilosc_nowa=Integer.parseInt(textfield_ilosc_nowa.getText()); 
+               double cena_nowa=Double.parseDouble(textfield_cena_nowa.getText()); 
+               sklepROPUCHA.edytujTowarNazwa(nazwa, panel_prawy, nazwa_nowa, cena_nowa, ilosc_nowa);
             }
         });
         //Przycisk "dodaj"
         button_dodaj.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+               String nazwa=textfield_nazwa.getText();
+               String nazwa_dodaj=textfield_nazwa_dodaj.getText(); 
+               int ilosc_dodaj=Integer.parseInt(textfield_ilosc_dodaj.getText());
+               double cena_dodaj=Double.parseDouble(textfield_cena_dodaj.getText());
+               TowarSklep towar=new TowarSklep(nazwa_dodaj,cena_dodaj,ilosc_dodaj);
+               sklepROPUCHA.dodajTowar(towar);
+               model.addElement(towar.opisTowarSklep());
             }
         });
         //Przycisk "zmien" dla wplatomatu
         button_wplatomat.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+                int ilosc=Integer.parseInt(textfield_ilosc_pieniedzy.getText());
+                sklepROPUCHA.getWplatomat().setIloscPieniedzy(ilosc);
+                label_pieniadze.setText("Aktualna ilość: "+sklepROPUCHA.getWplatomat().getIloscPieniedzy());
             }
         });
         //Przycisk "zmien" dla drukarki
         button_drukarka.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+                int ilosc=Integer.parseInt(textfield_ilosc_papieru.getText());
+                sklepROPUCHA.getDrukarka().setIloscPapieru(ilosc);
+                label_papier.setText("Aktualna ilość: "+sklepROPUCHA.getDrukarka().getIloscPapieru());
             }
         });
         //Przycisk "sprawdz Awarie"
         button_awarie.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+               sklepROPUCHA.getWplatomat().sprawdzAwarie(panel_prawy);
+               sklepROPUCHA.getDrukarka().sprawdzAwarie(panel_prawy);
+            }
+        });
+        //Przycisk "Wyloguj"
+        button_wyloguj.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            //Zapis do pliku
+            try {
+                ObjectOutputStream plik;
+                plik = new ObjectOutputStream(new FileOutputStream("bazadanych_sklepROPUCHA.ser"));
+                plik.writeObject(sklepROPUCHA);
+                plik.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(OknoRachunek.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(OknoRachunek.class.getName()).log(Level.SEVERE, null, ex);
+            }
+               dispose();
+               JFrame f=new OknoGlowne(sklepROPUCHA); 
             }
         });
         setVisible(true);

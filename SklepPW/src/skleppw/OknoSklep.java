@@ -115,7 +115,6 @@ public class OknoSklep extends JFrame{
           panel_podglad_zamowienia.setPreferredSize(new Dimension(300, 280));
           panel_podglad_zamowienia.setBounds(0,0,300,300);
           panel_koszyk.add(panel_podglad_zamowienia);
-          
           DefaultListModel<String> model = new DefaultListModel<>();
           lista_zamowien = new JList(model); 
           JScrollPane scroll_lista_zamowien = new JScrollPane();
@@ -220,7 +219,7 @@ public class OknoSklep extends JFrame{
         setResizable(false);
     }
     
-    //Ustawianie styli komórek, sposob z internetu musze ogarnac jeszcze
+    //Ustawianie styli komórek, sposob z internetu
     private ListCellRenderer<? super String> getRenderer() {
         return new DefaultListCellRenderer() {
             @Override
