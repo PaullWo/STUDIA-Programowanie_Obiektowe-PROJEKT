@@ -80,6 +80,16 @@ public class OknoFakturaDane extends JFrame{
         button_wroc.setBackground(Color.decode("#999966"));
         button_wroc.setBorder(BorderFactory.createEmptyBorder(5,10,5,30));
         panel_sklep.add(button_wroc);
+        try {
+            ObjectOutputStream plik;
+            plik = new ObjectOutputStream(new FileOutputStream("bazadanych_sklepROPUCHA.ser"));
+            plik.writeObject(sklepROPUCHA);
+            plik.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(OknoRachunek.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(OknoRachunek.class.getName()).log(Level.SEVERE, null, ex);
+        }
       //Obsluga przyciskow
         //Przycisk "Wróc do sklepu"
         button_wroc.addActionListener(new ActionListener() {
