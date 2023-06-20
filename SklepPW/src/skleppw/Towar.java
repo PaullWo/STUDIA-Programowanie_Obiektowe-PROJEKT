@@ -1,6 +1,8 @@
 package skleppw;
 
-public class Towar {
+import java.io.Serializable;
+
+public class Towar implements Serializable{
     private String nazwa;
     private double cena;
     

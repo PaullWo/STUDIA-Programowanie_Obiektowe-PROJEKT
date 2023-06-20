@@ -1,6 +1,8 @@
 package skleppw;
 
-public class TowarSklep extends Towar{
+import java.io.Serializable;
+
+public class TowarSklep extends Towar implements Serializable{
     private int ilosc_na_stanie;
     
     public TowarSklep(String nazwa,double cena,int ilosc_na_stanie){

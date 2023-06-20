@@ -1,16 +1,19 @@
 package skleppw;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class Sklep implements Opisy{
+public class Sklep implements Opisy,Serializable{
     private String nazwa;
     private String adres;
     private List<Uzytkownik> lista_uzytkownikow = new ArrayList<>();
     private DefaultListModel<TowarSklep> lista_towarow; 
+    private Wplatomat wplatomat;
+    private Drukarka drukarka;
     
     public Sklep(){
         lista_towarow = new DefaultListModel<>();
@@ -64,8 +67,7 @@ public class Sklep implements Opisy{
         return pomoc;
     }
     public void usunTowarIndex(int index){
-        lista_towarow.remove(index);
-        
+        lista_towarow.remove(index); 
     }
     
     //Obsluga uzytkownikow
@@ -97,4 +99,23 @@ public class Sklep implements Opisy{
     public Uzytkownik getUzytkownikID(int index){
         return lista_uzytkownikow.get(index);
     }
+    
+    //Obsluga sprzetow
+    public Wplatomat getWplatomat(){
+        return wplatomat;
+    }
+    public void setWplatomat(Wplatomat wplatomat){
+        this.wplatomat=wplatomat;
+    }
+    public Drukarka getDrukarka(){
+        return drukarka;
+    }
+    public void setDrukarka(Drukarka drukarka){
+        this.drukarka=drukarka;
+    }
+    public void sprawdzAwarieSprzetow(JPanel panel){
+        wplatomat.sprawdzAwarie(panel);
+        drukarka.sprawdzAwarie(panel);
+    }
+    
 }

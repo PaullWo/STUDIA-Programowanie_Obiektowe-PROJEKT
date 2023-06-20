@@ -1,7 +1,10 @@
 package skleppw;
 
 //Klasa uzytkownik, przydatna do logowania
-public class Uzytkownik implements Opisy{
+
+import java.io.Serializable;
+
+public class Uzytkownik implements Opisy,Serializable{
     private String login;
     private String haslo;
     private String imie;
