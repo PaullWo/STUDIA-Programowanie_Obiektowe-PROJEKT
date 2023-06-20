@@ -35,7 +35,7 @@ public class ZakupionyTowar implements Opisy,Serializable{
     }
     @Override
     public String opisHTML(){
-        double kwota=Math.round((zakupiony_towar.getCena()*ilosc) * 100.0) / 100.0;
+        double kwota=Math.round((zakupiony_towar.getCena()*ilosc)*100.0)/100.0;
         return "<html><b>Nazwa: </b></html>"+zakupiony_towar.getNazwa()+"<html>, <b>ilosc: </b></hmtl>"+ilosc+
                 "<html>, <b>koszt: </b></html>"+kwota+"zl";
     }

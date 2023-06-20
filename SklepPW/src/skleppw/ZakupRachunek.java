@@ -3,6 +3,7 @@ package skleppw;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 
 public class ZakupRachunek extends Zakup implements Opisy,Serializable{
     private String nazwa;
@@ -19,9 +20,9 @@ public class ZakupRachunek extends Zakup implements Opisy,Serializable{
     public String opisHTML(){
         double reszta=getZaplaconaKwota()-getKoszt();
         String opis="<html><b>RACHUNEK<br>Lista produktów: </b><br></html>";
-        List<String> pomoc=getListaTowarowWyswietl();
-        for(int i=0;i<pomoc.size();i++){
-            opis+=i+"<html>.</html>"+pomoc.get(i)+"<html><br></html>";
+        DefaultListModel<String> pomoc=getListaTowarowWyswietl();
+        for(int i=0;i<pomoc.getSize();i++){
+            opis+=i+"<html>.</html>"+pomoc.elementAt(i)+"<html><br></html>";
         }
         opis+="<html><b>Koszt: </b></html>"+getKoszt()+"<html>zl<br></html>";
         opis+="<html><b>Zapłacona kwota: </b></html>"+getZaplaconaKwota()+"<html>zl<br></html>";

@@ -2,6 +2,7 @@ package skleppw;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.swing.DefaultListModel;
 
 public class ZakupFaktura extends Zakup implements Opisy,Serializable{
     private String nazwa;
@@ -15,6 +16,14 @@ public class ZakupFaktura extends Zakup implements Opisy,Serializable{
     public ZakupFaktura(Sklep sklep,double laczny_koszt,double zaplacona_kwota,String imie,String nazwisko,String miejscowosc,String dzien_urodzenia,String miesiac_urodzenia,String rok_urodzenia){
         super(sklep,laczny_koszt,zaplacona_kwota);
         nazwa="Faktura";
+        this.imie=imie;
+        this.nazwisko=nazwisko;
+        this.miejscowosc=miejscowosc;
+        this.dzien_urodzenia=dzien_urodzenia;
+        this.miesiac_urodzenia=miesiac_urodzenia;
+        this.rok_urodzenia=rok_urodzenia;
+    }
+    public void ustawDane(String imie,String nazwisko,String miejscowosc,String dzien_urodzenia,String miesiac_urodzenia,String rok_urodzenia){
         this.imie=imie;
         this.nazwisko=nazwisko;
         this.miejscowosc=miejscowosc;
@@ -37,9 +46,9 @@ public class ZakupFaktura extends Zakup implements Opisy,Serializable{
                 dzien_urodzenia+"."+miesiac_urodzenia+"."+rok_urodzenia+"<html><br></html>";
         double reszta=getZaplaconaKwota()-getKoszt();
         opis+="<html><b>Lista produktów: </b><br></html>";
-        List<String> pomoc=getListaTowarowWyswietl();
-        for(int i=0;i<pomoc.size();i++){
-            opis+=i+"<html>.</html>"+pomoc.get(i)+"<html><br></html>";
+        DefaultListModel<String> pomoc=getListaTowarowWyswietl();
+        for(int i=0;i<pomoc.getSize();i++){
+            opis+=i+"<html>.</html>"+pomoc.elementAt(i)+"<html><br></html>";
         }
         opis+="<html><b>Koszt: </b></html>"+getKoszt()+"<html>zl<br></html>";
         opis+="<html><b>Zapłacona kwota: </b></html>"+getZaplaconaKwota()+"<html>zl<br></html>";

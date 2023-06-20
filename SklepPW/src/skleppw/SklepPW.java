@@ -30,6 +30,19 @@ public class SklepPW {
         sklepROPUCHA.dodajTowar(testtowar10);
         sklepROPUCHA.dodajTowar(testtowar11);
         sklepROPUCHA.dodajTowar(testtowar12);
+        Uzytkownik u1=new Uzytkownik("123","123");
+        Uzytkownik u2=new Uzytkownik("user","123");
+        //Konto dla admina
+        Uzytkownik u3=new Uzytkownik("admin","admin");
+        sklepROPUCHA.TESTDODAJ(u2);
+        sklepROPUCHA.TESTDODAJ(u1);
+        sklepROPUCHA.TESTDODAJ(u3);
+        Wplatomat wplatomat=new Wplatomat("wplatomat");
+        wplatomat.dodajPieniadze(8291.71);
+        Drukarka drukarka=new Drukarka("drukarka");
+        drukarka.dodajPapier(100);
+        sklepROPUCHA.setWplatomat(wplatomat);
+        sklepROPUCHA.setDrukarka(drukarka);
         JFrame f=new OknoGlowne(sklepROPUCHA);
     }    
 }

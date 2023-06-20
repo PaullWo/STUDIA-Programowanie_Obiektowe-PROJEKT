@@ -5,8 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.DefaultListModel;
 
-public abstract class Zakup implements Opisy,Serializable{
+public class Zakup implements Opisy, Serializable{
     private Sklep sklep;
     private double laczny_koszt;
     private double zaplacona_kwota;
@@ -47,6 +48,7 @@ public abstract class Zakup implements Opisy,Serializable{
     //Obsluga zakupionych towarow
     public void dodajTowar(ZakupionyTowar towar){
         lista_zakupionych_towarow.add(towar);
+        laczny_koszt+=towar.getKoszt();
     }
     public void dodajTowary(List<ZakupionyTowar> lista_zakupionych_towarow){
         this.lista_zakupionych_towarow=lista_zakupionych_towarow;
@@ -57,8 +59,8 @@ public abstract class Zakup implements Opisy,Serializable{
     public List<ZakupionyTowar> getListaTowarow(){
         return lista_zakupionych_towarow;
     }
-    public List<String> getListaTowarowWyswietl(){
-        List<String> pomoc=new ArrayList<>();
+    public DefaultListModel<String> getListaTowarowWyswietl(){
+        DefaultListModel<String> pomoc=new DefaultListModel<>();
         for(int i=0;i<lista_zakupionych_towarow.size();i++){
             pomoc.add(i, lista_zakupionych_towarow.get(i).opisHTML());
         }
@@ -66,5 +68,24 @@ public abstract class Zakup implements Opisy,Serializable{
     }
     public void usunTowarIndex(int index){
         lista_zakupionych_towarow.remove(index); 
+    }
+    @Override
+    public String opis(){
+        double reszta=getZaplaconaKwota()-getKoszt();
+        return "Koszt: "+getKoszt()+"zl\nZapłacona kwota: "+getZaplaconaKwota()+"zl\nReszta: "+reszta+"zl\nData: "+getData()+"\n";
+    }
+    @Override
+    public String opisHTML(){
+        double reszta=getZaplaconaKwota()-getKoszt();
+        String opis="<html>Lista produktów: </b><br></html>";
+        DefaultListModel<String> pomoc=getListaTowarowWyswietl();
+        for(int i=0;i<pomoc.getSize();i++){
+            opis+=i+"<html>.</html>"+pomoc.elementAt(i)+"<html><br></html>";
+        }
+        opis+="<html><b>Koszt: </b></html>"+getKoszt()+"<html>zl<br></html>";
+        opis+="<html><b>Zapłacona kwota: </b></html>"+getZaplaconaKwota()+"<html>zl<br></html>";
+        opis+="<html><b>Wydana reszta: </b></html>"+reszta+"<html>zl<br></html>";
+        opis+="<html><b>Data: </b></html>"+getData()+"<html><br></html>";
+        return opis;
     }
 }

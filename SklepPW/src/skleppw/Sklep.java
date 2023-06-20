@@ -12,6 +12,7 @@ public class Sklep implements Opisy,Serializable{
     private String adres;
     private List<Uzytkownik> lista_uzytkownikow = new ArrayList<>();
     private DefaultListModel<TowarSklep> lista_towarow; 
+    private List<Zakup> lista_zakupow = new ArrayList<>();
     private Wplatomat wplatomat;
     private Drukarka drukarka;
     
@@ -69,7 +70,14 @@ public class Sklep implements Opisy,Serializable{
     public void usunTowarIndex(int index){
         lista_towarow.remove(index); 
     }
-    
+    public TowarSklep getTowarOpis(String sprawdzany_opis){
+        for(int i=0;i<lista_towarow.getSize();i++){
+            if(lista_towarow.elementAt(i).opis().equals(sprawdzany_opis)){
+                return lista_towarow.elementAt(i);
+            }
+        }
+            return null;    
+    }
     //Obsluga uzytkownikow
     public void TESTDODAJ(Uzytkownik uzytkownik){
         lista_uzytkownikow.add(uzytkownik);
@@ -117,5 +125,22 @@ public class Sklep implements Opisy,Serializable{
         wplatomat.sprawdzAwarie(panel);
         drukarka.sprawdzAwarie(panel);
     }
-    
+    //Obsluga zamowien
+    public void dodajZakup(Zakup zakup){
+        lista_zakupow.add(zakup);
+    }
+    public Zakup getZakupIndex(int index){
+        return lista_zakupow.get(index);
+    }
+    public List<Zakup> getZakupIndex(){
+        return lista_zakupow;
+    }
+    public String wyswietlZakupyHTML(){
+        String opis="<html>Lista zakupów: <br></html>";
+        for(int i=0;i<lista_zakupow.size();i++){
+            opis+=lista_zakupow.get(i).opisHTML();
+            opis+="<html><br>-------------------------<br></html>";
+        }
+        return opis;
+    }
 }

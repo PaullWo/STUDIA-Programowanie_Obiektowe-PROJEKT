@@ -30,11 +30,6 @@ public class OknoGlowne extends JFrame{
     public OknoGlowne(Sklep sklep){
         sklepROPUCHA=sklep;
         uzytkownik=null;
-                //TEST
-                Uzytkownik u1=new Uzytkownik("123","123");
-                Uzytkownik u2=new Uzytkownik("user","123");
-                sklepROPUCHA.TESTDODAJ(u2);
-                sklepROPUCHA.TESTDODAJ(u1);
         zalogowanie=0;
         setTitle("SKLEP ROPUCHA");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

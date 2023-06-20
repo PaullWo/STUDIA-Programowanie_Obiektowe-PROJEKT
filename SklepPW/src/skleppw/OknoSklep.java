@@ -14,6 +14,7 @@ public class OknoSklep extends JFrame{
     private int zalogowanie;
     private Sklep sklepROPUCHA;
     private Uzytkownik uzytkownik;
+    private Zakup pomocniczy_zakup;
     //Panele
     private JPanel panel_logo;
     private final JPanel panel_sklep;
@@ -27,13 +28,16 @@ public class OknoSklep extends JFrame{
     private final JButton button_zaplac;
     //Listy
     private JList lista_produktow;
-    private final JList lista_zamowien;
+    private JList lista_zamowien;
+    //Label
+    private JLabel label_koszt;
     
     public OknoSklep(int zalogowanie,Uzytkownik uzytkownik,Sklep sklep){
         this.zalogowanie=zalogowanie;
         this.uzytkownik=uzytkownik;
         sklepROPUCHA=sklep;
         setTitle("SKLEP ROPUCHA");
+        pomocniczy_zakup=new Zakup(sklepROPUCHA,0,0);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
         setSize(900, 628);
@@ -89,7 +93,7 @@ public class OknoSklep extends JFrame{
         panel_koszyk.setPreferredSize(new Dimension(350, 461));
         panel_koszyk.setBorder(BorderFactory.createLineBorder(Color.black,2));
         panel_sklep.add(panel_koszyk);
-          //Koszyk, tabela z zamowieniem, kwota, usun element, zapłać
+          //Koszyk, lista z zamowieniem, kwota, usun element, zapłać
           JPanel panel_koszyk2=new JPanel();
           panel_koszyk2.setBackground(Color.decode("#ffffcc"));
           panel_koszyk2.setPreferredSize(new Dimension(200, 80));
@@ -103,26 +107,31 @@ public class OknoSklep extends JFrame{
           } catch (IOException ex) {
             Logger.getLogger(OknoGlowne.class.getName()).log(Level.SEVERE, null, ex);
           }
+          panel_koszyk.add(panel_koszyk2);
           
           //Panel z wyswietleniem zamowienia
-          panel_koszyk.add(panel_koszyk2);
           JPanel panel_podglad_zamowienia=new JPanel();
           panel_podglad_zamowienia.setBackground(Color.decode("#ffffcc"));
           panel_podglad_zamowienia.setPreferredSize(new Dimension(300, 280));
           panel_podglad_zamowienia.setBounds(0,0,300,300);
           panel_koszyk.add(panel_podglad_zamowienia);
-          lista_zamowien = new JList(sklepROPUCHA.getListaTowarowWyswietl()); //zmienic na liste zamowien!!
+          
+          DefaultListModel<String> model = new DefaultListModel<>();
+          lista_zamowien = new JList(model); 
           JScrollPane scroll_lista_zamowien = new JScrollPane();
           scroll_lista_zamowien.setViewportView(lista_zamowien);
-          scroll_lista_zamowien.setPreferredSize(new Dimension(180, 250));
+          scroll_lista_zamowien.setPreferredSize(new Dimension(250, 250));
           scroll_lista_zamowien.setBorder(BorderFactory.createLineBorder(Color.black,1));
           panel_podglad_zamowienia.add(scroll_lista_zamowien);
-          panel_podglad_zamowienia.add(new JLabel("Łączna kwota zamówienia: "+100.02));    //zsumowac zamowienie
+          
+
+          label_koszt=new JLabel("Łączna kwota zamówienia: "+pomocniczy_zakup.getKoszt()+"zł");
+          panel_podglad_zamowienia.add(label_koszt);
           //Przyciski dodaj/usun produkt i zaplac + pole ilosc
           JPanel panel_przyciski= new JPanel(new GridLayout(0,2,5,5));
           panel_przyciski.setPreferredSize(new Dimension(170, 70));
           panel_przyciski.setBackground(Color.decode("#ffffcc"));
-          textfield_ilosc = new JTextField(2);
+          textfield_ilosc = new JTextField("1",2);
           panel_przyciski.add(new JLabel("Ilosc:"));
           panel_przyciski.add(textfield_ilosc);
           button_dodaj = new JButton("Dodaj");
@@ -164,6 +173,26 @@ public class OknoSklep extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 JFrame fplatnosc=new OknoPlatnosci(zalogowanie,uzytkownik,sklepROPUCHA);
+            }
+        });
+        //Przycisk "Dodaj"
+        setVisible(true);
+        setResizable(false);
+        button_dodaj.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(lista_produktow.getSelectedValue()!=null){
+                    int ilosc=Integer.parseInt(textfield_ilosc.getText());
+                    String sprawdzany_opis=(String)lista_produktow.getSelectedValue();
+                    TowarSklep pomocniczy_towar=sklepROPUCHA.getTowarOpis(sprawdzany_opis);
+                    ZakupionyTowar pomocniczy_zakupiony_towar=new ZakupionyTowar(pomocniczy_towar,ilosc);
+                    //System.out.println(lista_produktow.getSelectedValue());
+                    //System.out.println(ilosc); 
+                    //System.out.println(pomocniczy_zakupiony_towar.opisHTML());
+                    pomocniczy_zakup.dodajTowar(pomocniczy_zakupiony_towar);
+                    //System.out.println(pomocniczy_zakup.opisHTML());
+                    label_koszt.setText("Łączna kwota zamówienia: "+pomocniczy_zakup.getKoszt()+"zł");
+                    model.addElement(pomocniczy_zakupiony_towar.opis());
+                }
             }
         });
         setVisible(true);
