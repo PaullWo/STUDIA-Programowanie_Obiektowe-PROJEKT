@@ -170,8 +170,12 @@ public class OknoPlatnosci extends JFrame{
         //Przycisk "Zapłać"
         button_zaplac.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                double pomoc= Double.parseDouble(pomocnicza_wpisanakwota);
-                sklepROPUCHA.getOstatniZakup().setZaplaconaKwota(pomoc);
+                try{
+                    double pomoc= Double.parseDouble(pomocnicza_wpisanakwota);
+                    sklepROPUCHA.getOstatniZakup().setZaplaconaKwota(pomoc);
+                }catch(NumberFormatException f){
+                        JOptionPane.showMessageDialog(panel_sklep,"Błedny typ danych! Spróbuj ponownie."); 
+                }
                 if(radio_rachunek.isSelected()){
                     dispose();
                     JFrame frachunek=new OknoRachunek(zalogowanie,uzytkownik,sklepROPUCHA);

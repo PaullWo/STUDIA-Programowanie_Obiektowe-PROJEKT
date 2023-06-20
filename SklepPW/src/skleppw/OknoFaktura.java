@@ -109,14 +109,18 @@ public class OknoFaktura extends JFrame{
                     //Okno dialogowe z komunikatem
                     JOptionPane.showMessageDialog(panel_sklep,"Wypełnij wszytskie pola!"); 
                 }else{
-                    String imie=textfield_imie.getText();
-                    String nazwisko=textfield_nazwisko.getText();
-                    String miejscowosc=textfield_miejscowosc.getText();
-                    String dzien=(String)combobox_dzien.getSelectedItem();
-                    String miesiac=(String)combobox_miesiac.getSelectedItem();
-                    String rok=textfield_rok.getText();
-                    dispose();
-                    JFrame f=new OknoFakturaDane(imie,nazwisko,dzien,miesiac,rok,miejscowosc,zalogowanie,uzytkownik,sklepROPUCHA);  
+                    try{
+                        String imie=textfield_imie.getText();
+                        String nazwisko=textfield_nazwisko.getText();
+                        String miejscowosc=textfield_miejscowosc.getText();
+                        String dzien=(String)combobox_dzien.getSelectedItem();
+                        String miesiac=(String)combobox_miesiac.getSelectedItem();
+                        String rok=textfield_rok.getText();
+                        dispose();
+                        JFrame f=new OknoFakturaDane(imie,nazwisko,dzien,miesiac,rok,miejscowosc,zalogowanie,uzytkownik,sklepROPUCHA);  
+                    }catch(NumberFormatException f){
+                        JOptionPane.showMessageDialog(panel_sklep,"Błedny typ danych! Spróbuj ponownie."); 
+                    }
                 }
             }
         });

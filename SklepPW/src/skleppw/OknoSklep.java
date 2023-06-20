@@ -203,14 +203,18 @@ public class OknoSklep extends JFrame{
         button_dodaj.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(lista_produktow.getSelectedValue()!=null){
-                    int ilosc=Integer.parseInt(textfield_ilosc.getText());
-                    String sprawdzany_opis=(String)lista_produktow.getSelectedValue();
-                    TowarSklep pomocniczy_towar=sklepROPUCHA.getTowarOpis(sprawdzany_opis);
-                    ZakupionyTowar pomocniczy_zakupiony_towar=new ZakupionyTowar(pomocniczy_towar,ilosc);
-                    pomocniczy_zakup.dodajTowar(pomocniczy_zakupiony_towar);
-                    label_koszt.setText("Łączna kwota zamówienia: "+pomocniczy_zakup.getKoszt()+"zł");
-                    model.addElement(pomocniczy_zakupiony_towar.opis());
-                    System.out.println(pomocniczy_zakup.opisHTML());
+                    try{
+                        int ilosc=Integer.parseInt(textfield_ilosc.getText());
+                        String sprawdzany_opis=(String)lista_produktow.getSelectedValue();
+                        TowarSklep pomocniczy_towar=sklepROPUCHA.getTowarOpis(sprawdzany_opis);
+                        ZakupionyTowar pomocniczy_zakupiony_towar=new ZakupionyTowar(pomocniczy_towar,ilosc);
+                        pomocniczy_zakup.dodajTowar(pomocniczy_zakupiony_towar);
+                        label_koszt.setText("Łączna kwota zamówienia: "+pomocniczy_zakup.getKoszt()+"zł");
+                        model.addElement(pomocniczy_zakupiony_towar.opis());
+                        System.out.println(pomocniczy_zakup.opisHTML());
+                    }catch(NumberFormatException f){
+                        JOptionPane.showMessageDialog(panel_podglad_zamowienia,"Błedny typ danych! Spróbuj ponownie."); 
+                    }
                 }
             }
         });

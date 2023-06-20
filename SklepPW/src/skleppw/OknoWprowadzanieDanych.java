@@ -108,6 +108,7 @@ public class OknoWprowadzanieDanych extends JFrame{
                     //Okno dialogowe z komunikatem
                     JOptionPane.showMessageDialog(panel_sklep,"Wypełnij wszytskie pola!"); 
                 }else{
+                    try{
                     String imie=textfield_imie.getText();
                     String nazwisko=textfield_nazwisko.getText();
                     String miejscowosc=textfield_miejscowosc.getText();
@@ -119,6 +120,9 @@ public class OknoWprowadzanieDanych extends JFrame{
                     JOptionPane.showMessageDialog(panel_sklep,"Dane zostały zapamietane!");
                     dispose();
                     JFrame f=new OknoSklep(zalogowanie,uzytkownik,sklepROPUCHA);  
+                    }catch(NumberFormatException f){
+                        JOptionPane.showMessageDialog(panel_sklep,"Błedny typ danych! Spróbuj ponownie."); 
+                    }
                 }
             }
         });

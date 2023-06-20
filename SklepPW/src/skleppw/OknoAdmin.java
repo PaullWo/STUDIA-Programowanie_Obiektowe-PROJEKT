@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.InputMismatchException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -199,39 +200,55 @@ public class OknoAdmin extends JFrame{
         //Przycisk "edytuj"
         button_edytuj.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               String nazwa=textfield_nazwa.getText();
-               String nazwa_nowa=textfield_nazwa_nowa.getText(); 
-               int ilosc_nowa=Integer.parseInt(textfield_ilosc_nowa.getText()); 
-               double cena_nowa=Double.parseDouble(textfield_cena_nowa.getText()); 
-               sklepROPUCHA.edytujTowarNazwa(nazwa, panel_prawy, nazwa_nowa, cena_nowa, ilosc_nowa);
+               try{
+                    String nazwa=textfield_nazwa.getText();
+                    String nazwa_nowa=textfield_nazwa_nowa.getText(); 
+                    int ilosc_nowa=Integer.parseInt(textfield_ilosc_nowa.getText()); 
+                    double cena_nowa=Double.parseDouble(textfield_cena_nowa.getText()); 
+                    sklepROPUCHA.edytujTowarNazwa(nazwa, panel_prawy, nazwa_nowa, cena_nowa, ilosc_nowa);
+               }catch(NumberFormatException f){
+                    JOptionPane.showMessageDialog(panel_prawy,"Błedny typ danych! Spróbuj ponownie."); 
+                }
             }
         });
         //Przycisk "dodaj"
         button_dodaj.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               String nazwa=textfield_nazwa.getText();
-               String nazwa_dodaj=textfield_nazwa_dodaj.getText(); 
-               int ilosc_dodaj=Integer.parseInt(textfield_ilosc_dodaj.getText());
-               double cena_dodaj=Double.parseDouble(textfield_cena_dodaj.getText());
-               TowarSklep towar=new TowarSklep(nazwa_dodaj,cena_dodaj,ilosc_dodaj);
-               sklepROPUCHA.dodajTowar(towar);
-               model.addElement(towar.opisTowarSklep());
+                try{
+                    String nazwa=textfield_nazwa.getText();
+                    String nazwa_dodaj=textfield_nazwa_dodaj.getText(); 
+                    int ilosc_dodaj=Integer.parseInt(textfield_ilosc_dodaj.getText());
+                    double cena_dodaj=Double.parseDouble(textfield_cena_dodaj.getText());
+                    TowarSklep towar=new TowarSklep(nazwa_dodaj,cena_dodaj,ilosc_dodaj);
+                    sklepROPUCHA.dodajTowar(towar);
+                    model.addElement(towar.opisTowarSklep());
+                }catch(NumberFormatException f){
+                    JOptionPane.showMessageDialog(panel_prawy,"Błedny typ danych! Spróbuj ponownie."); 
+                }
             }
         });
         //Przycisk "zmien" dla wplatomatu
         button_wplatomat.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int ilosc=Integer.parseInt(textfield_ilosc_pieniedzy.getText());
-                sklepROPUCHA.getWplatomat().setIloscPieniedzy(ilosc);
-                label_pieniadze.setText("Aktualna ilość: "+sklepROPUCHA.getWplatomat().getIloscPieniedzy());
+                try{
+                    int ilosc=Integer.parseInt(textfield_ilosc_pieniedzy.getText());
+                    sklepROPUCHA.getWplatomat().setIloscPieniedzy(ilosc);
+                    label_pieniadze.setText("Aktualna ilość: "+sklepROPUCHA.getWplatomat().getIloscPieniedzy());
+                }catch(NumberFormatException f){
+                     JOptionPane.showMessageDialog(panel_prawy,"Błedny typ danych! Spróbuj ponownie."); 
+                }
             }
         });
         //Przycisk "zmien" dla drukarki
         button_drukarka.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int ilosc=Integer.parseInt(textfield_ilosc_papieru.getText());
-                sklepROPUCHA.getDrukarka().setIloscPapieru(ilosc);
-                label_papier.setText("Aktualna ilość: "+sklepROPUCHA.getDrukarka().getIloscPapieru());
+                try{
+                    int ilosc=Integer.parseInt(textfield_ilosc_papieru.getText());
+                    sklepROPUCHA.getDrukarka().setIloscPapieru(ilosc);
+                    label_papier.setText("Aktualna ilość: "+sklepROPUCHA.getDrukarka().getIloscPapieru());
+                }catch(NumberFormatException f){
+                     JOptionPane.showMessageDialog(panel_prawy,"Błedny typ danych! Spróbuj ponownie."); 
+                }
             }
         });
         //Przycisk "sprawdz Awarie"
