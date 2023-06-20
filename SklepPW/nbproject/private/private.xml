@@ -5,10 +5,26 @@
         <group>
             <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/Sklep.java</file>
             <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/Uzytkownik.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/OknoFaktura.java</file>
             <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/SklepPW.java</file>
-            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/TowarySklep.java</file>
-            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/Towar.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/OknoLogowanieAdmin.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/OknoSklep.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/Zakup.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/OknoAdmin.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/OknoPlatnosci.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/OknoFakturaDane.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/OknoWprowadzanieDanych.java</file>
             <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/TowarSklep.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/OknoGlowne.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/ZakupFaktura.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/ZakupionyTowar.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/Opisy.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/ZakupRachunek.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/Sprzet.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/Drukarka.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/OknoRachunek.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/Towar.java</file>
+            <file>file:/D:/Git/udst-repozytoria/STUDIA-ProgramowanieObiektowe-Projekt/SklepPW/src/skleppw/Wplatomat.java</file>
         </group>
     </open-files>
 </project-private>
