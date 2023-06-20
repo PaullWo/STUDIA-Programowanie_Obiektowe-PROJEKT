@@ -115,6 +115,8 @@ public class OknoWprowadzanieDanych extends JFrame{
                     String dzien=(String)combobox_dzien.getSelectedItem();
                     String miesiac=(String)combobox_miesiac.getSelectedItem();
                     String rok=textfield_rok.getText();
+                    int rokInt=Integer.parseInt(rok);
+                    if(rokInt<1900 || rokInt >2023) throw new ArithmeticException("Błedny rok!");
                     uzytkownik.ustawDane(imie, nazwisko, miejscowosc, dzien, miesiac, rok);
                     sklepROPUCHA.getUzytkownikID(sklepROPUCHA.logowanie(uzytkownik.getLogin(), uzytkownik.getHaslo())).ustawDane(imie, nazwisko, miejscowosc, dzien, miesiac, rok);
                     JOptionPane.showMessageDialog(panel_sklep,"Dane zostały zapamietane!");
@@ -122,6 +124,8 @@ public class OknoWprowadzanieDanych extends JFrame{
                     JFrame f=new OknoSklep(zalogowanie,uzytkownik,sklepROPUCHA);  
                     }catch(NumberFormatException f){
                         JOptionPane.showMessageDialog(panel_sklep,"Błedny typ danych! Spróbuj ponownie."); 
+                    }catch(ArithmeticException g){
+                        JOptionPane.showMessageDialog(panel_sklep,g.getMessage()); 
                     }
                 }
             }

@@ -172,11 +172,9 @@ public class OknoPlatnosci extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 try{
                     double pomoc= Double.parseDouble(pomocnicza_wpisanakwota);
+                    if(pomoc<sklepROPUCHA.getOstatniZakup().getKoszt()) throw new ArithmeticException("Za mała kwota aby zapłacić!");
                     sklepROPUCHA.getOstatniZakup().setZaplaconaKwota(pomoc);
-                }catch(NumberFormatException f){
-                        JOptionPane.showMessageDialog(panel_sklep,"Błedny typ danych! Spróbuj ponownie."); 
-                }
-                if(radio_rachunek.isSelected()){
+                    if(radio_rachunek.isSelected()){
                     dispose();
                     JFrame frachunek=new OknoRachunek(zalogowanie,uzytkownik,sklepROPUCHA);
                 }else if(radio_faktura.isSelected()){
@@ -191,6 +189,12 @@ public class OknoPlatnosci extends JFrame{
                     //Okno dialogowe z komunikatem
                     JOptionPane.showMessageDialog(panel_placenie,"Wybierz fakturę/rachunek."); 
                 }
+                }catch(NumberFormatException f){
+                        JOptionPane.showMessageDialog(panel_sklep,"Błedny typ danych! Spróbuj ponownie."); 
+                }catch(ArithmeticException g){
+                        JOptionPane.showMessageDialog(panel_sklep,g.getMessage()); 
+                }
+                
             }
         });
         //Przycisk "1"

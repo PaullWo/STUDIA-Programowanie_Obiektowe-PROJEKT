@@ -116,10 +116,14 @@ public class OknoFaktura extends JFrame{
                         String dzien=(String)combobox_dzien.getSelectedItem();
                         String miesiac=(String)combobox_miesiac.getSelectedItem();
                         String rok=textfield_rok.getText();
+                        int rokInt=Integer.parseInt(rok);
+                        if(rokInt<1900 || rokInt >2023) throw new ArithmeticException("Błedny rok!");
                         dispose();
                         JFrame f=new OknoFakturaDane(imie,nazwisko,dzien,miesiac,rok,miejscowosc,zalogowanie,uzytkownik,sklepROPUCHA);  
                     }catch(NumberFormatException f){
                         JOptionPane.showMessageDialog(panel_sklep,"Błedny typ danych! Spróbuj ponownie."); 
+                    }catch(ArithmeticException g){
+                        JOptionPane.showMessageDialog(panel_sklep,g.getMessage()); 
                     }
                 }
             }
