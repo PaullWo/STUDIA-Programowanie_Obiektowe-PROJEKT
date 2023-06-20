@@ -27,7 +27,6 @@ public class OknoSklep extends JFrame{
     private final JButton button_zaplac;
     //Listy
     private JList lista_produktow;
-    TowarySklep lista_towarow;
     private final JList lista_zamowien;
     
     public OknoSklep(int zalogowanie,Uzytkownik uzytkownik,Sklep sklep){
@@ -71,7 +70,6 @@ public class OknoSklep extends JFrame{
         panel_towary.setBorder(BorderFactory.createLineBorder(Color.black,2));
         panel_sklep.add(panel_towary);
           //Lista z produktami
-          lista_towarow= new TowarySklep();
           TowarSklep testtowar1=new TowarSklep("BUŁKA",2.99,70);
           TowarSklep testtowar2=new TowarSklep("CHLEB",4.50,20);
           TowarSklep testtowar3=new TowarSklep("MASŁO",7,50);
@@ -84,19 +82,19 @@ public class OknoSklep extends JFrame{
           TowarSklep testtowar10=new TowarSklep("KURCZAK",15.2,20);
           TowarSklep testtowar11=new TowarSklep("MIĘSO MIELONE",9.99,30);
           TowarSklep testtowar12=new TowarSklep("KABANOSY",7.4,50);
-          lista_towarow.dodajTowar(testtowar1);
-          lista_towarow.dodajTowar(testtowar2);
-          lista_towarow.dodajTowar(testtowar3);
-          lista_towarow.dodajTowar(testtowar4);
-          lista_towarow.dodajTowar(testtowar5);
-          lista_towarow.dodajTowar(testtowar6);
-          lista_towarow.dodajTowar(testtowar7);
-          lista_towarow.dodajTowar(testtowar8);
-          lista_towarow.dodajTowar(testtowar9);
-          lista_towarow.dodajTowar(testtowar10);
-          lista_towarow.dodajTowar(testtowar11);
-          lista_towarow.dodajTowar(testtowar12);
-          lista_produktow = new JList(lista_towarow.getListaTowarowWyswietl());
+          sklepROPUCHA.dodajTowar(testtowar1);
+          sklepROPUCHA.dodajTowar(testtowar2);
+          sklepROPUCHA.dodajTowar(testtowar3);
+          sklepROPUCHA.dodajTowar(testtowar4);
+          sklepROPUCHA.dodajTowar(testtowar5);
+          sklepROPUCHA.dodajTowar(testtowar6);
+          sklepROPUCHA.dodajTowar(testtowar7);
+          sklepROPUCHA.dodajTowar(testtowar8);
+          sklepROPUCHA.dodajTowar(testtowar9);
+          sklepROPUCHA.dodajTowar(testtowar10);
+          sklepROPUCHA.dodajTowar(testtowar11);
+          sklepROPUCHA.dodajTowar(testtowar12);
+          lista_produktow = new JList(sklepROPUCHA.getListaTowarowWyswietl());
           //Scroll do listy
           JScrollPane scroll_lista_produktow = new JScrollPane();
           scroll_lista_produktow.setViewportView(lista_produktow);
@@ -137,7 +135,7 @@ public class OknoSklep extends JFrame{
           panel_podglad_zamowienia.setPreferredSize(new Dimension(300, 280));
           panel_podglad_zamowienia.setBounds(0,0,300,300);
           panel_koszyk.add(panel_podglad_zamowienia);
-          lista_zamowien = new JList(lista_towarow.getListaTowarowWyswietl()); //zmienic na liste zamowien!!
+          lista_zamowien = new JList(sklepROPUCHA.getListaTowarowWyswietl()); //zmienic na liste zamowien!!
           JScrollPane scroll_lista_zamowien = new JScrollPane();
           scroll_lista_zamowien.setViewportView(lista_zamowien);
           scroll_lista_zamowien.setPreferredSize(new Dimension(180, 250));

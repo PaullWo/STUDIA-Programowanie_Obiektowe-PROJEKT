@@ -2,14 +2,43 @@ package skleppw;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Sklep {
     private List<Uzytkownik> lista_uzytkownikow = new ArrayList<>();
-    
+    private DefaultListModel<TowarSklep> lista_towarow;  
     public Sklep(){
+        lista_towarow = new DefaultListModel<>();
     }
+    
+    //Obsluga towarow
+    public void dodajTowar(TowarSklep towar){
+        lista_towarow.addElement(towar);
+    }
+    public void dodajTowary(DefaultListModel<TowarSklep> lista_towarow){
+        this.lista_towarow=lista_towarow;
+    }
+    public TowarSklep getTowarIndex(int index){
+        return lista_towarow.elementAt(index);
+    }
+    public DefaultListModel<TowarSklep> getListaTowarow(){
+        return lista_towarow;
+    }
+    public DefaultListModel<String> getListaTowarowWyswietl(){
+        DefaultListModel<String> pomoc=new DefaultListModel<>();
+        for(int i=0;i<lista_towarow.getSize();i++){
+            pomoc.add(i, lista_towarow.elementAt(i).opis());
+        }
+        return pomoc;
+    }
+    public void usunTowarIndex(int index){
+        lista_towarow.remove(index);
+        
+    }
+    
+    //Obsluga uzytkownikow
     public void TESTDODAJ(Uzytkownik uzytkownik){
         lista_uzytkownikow.add(uzytkownik);
     }
