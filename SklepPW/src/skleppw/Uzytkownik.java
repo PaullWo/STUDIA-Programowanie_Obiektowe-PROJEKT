@@ -61,9 +61,9 @@ public class Uzytkownik implements Opisy,Serializable{
     }
     @Override
     public String opisHTML(){
-        return "<html><b>Imię: </b></html>"+imie+"<html><br></html>"+"<html><b>Nazwisko: </b></html>"+nazwisko+"<html><br></html>"+
-                "<html><b>Miejsce zamieszkania: </b></html>"+miejscowosc+"<html><br></html>"+"<html><b>Data urodzenia: </b></html>"+
-                dzien_urodzenia+"."+miesiac_urodzenia+"."+rok_urodzenia+"<html><br></html>";
+        return "<html><b>Imię: </b>"+imie+"<br>"+"<b>Nazwisko: </b>"+nazwisko+"<br>"+
+                "<b>Miejsce zamieszkania: </b>"+miejscowosc+"<br>"+"<b>Data urodzenia: </b>"+
+                dzien_urodzenia+"."+miesiac_urodzenia+"."+rok_urodzenia+"<br></html>";
     }
     public void ustawDane(String imie,String nazwisko,String miejscowosc,String dzien_urodzenia,String miesiac_urodzenia,String rok_urodzenia){
         this.imie=imie;

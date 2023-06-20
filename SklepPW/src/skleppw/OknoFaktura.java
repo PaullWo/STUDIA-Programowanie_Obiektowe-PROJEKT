@@ -15,6 +15,7 @@ public class OknoFaktura extends JFrame{
     private int zalogowanie;
     private Sklep sklepROPUCHA;
     private Uzytkownik uzytkownik;
+    private Zakup pomocniczy_zakup;
     //Panele
     private JPanel panel_logo;
     private final JPanel panel_sklep;

@@ -15,6 +15,7 @@ public class OknoFakturaDane extends JFrame{
     private int zalogowanie;
     private Sklep sklepROPUCHA;
     private Uzytkownik uzytkownik;
+    private Zakup pomocniczy_zakup;
     //Panele
     private JPanel panel_logo;
     private final JPanel panel_sklep;
@@ -62,7 +63,10 @@ public class OknoFakturaDane extends JFrame{
         panel_sklep.setBackground(Color.decode("#ffffcc"));
         panel_sklep1.add(panel_sklep);
         //Wyswietlanie rachunku
-        label_faktura=new JLabel("<html>Tu bedzie tresc<br>zamowienia.</html>");   //Dodac funkcjonalnosc tego!!
+        String pomoc="<b>Imię: </b>"+imie+"<br>"+"<b>Nazwisko: </b>"+nazwisko+"<br>"+
+        "<b>Miejsce zamieszkania: </b>"+miejscowosc+"<br>"+"<b>Data urodzenia: </b>"+
+        dzien+"."+miesiac+"."+rok+"<br>";
+        label_faktura=new JLabel("<html>FAKTURA:<br>Dane klienta:<br>"+pomoc+sklepROPUCHA.getOstatniZakup().opisHTML()+"</html>");   //Dodac funkcjonalnosc tego!!
         label_faktura.setOpaque(true);
         label_faktura.setBackground(Color.decode("#FFFFFF"));
         label_faktura.setPreferredSize(new Dimension(100, 300));

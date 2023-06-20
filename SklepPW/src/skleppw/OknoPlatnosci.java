@@ -14,6 +14,7 @@ public class OknoPlatnosci extends JFrame{
     private int zalogowanie;
     private Sklep sklepROPUCHA;
     private Uzytkownik uzytkownik;
+    private String pomocnicza_wpisanakwota="";
     //Panele
     private JPanel panel_logo;
     private final JPanel panel_sklep;
@@ -144,13 +145,13 @@ public class OknoPlatnosci extends JFrame{
         panel_placenie.setBackground(Color.decode("#ffffcc"));
         panel_placenie.setPreferredSize(new Dimension(150, 200));
         panel_placenie1.add(panel_placenie);
-        label_kwota = new JLabel("Kwota do zapłaty: "+200+"zł");  //Dodac sumowanie!!
+        label_kwota = new JLabel("Kwota do zapłaty: "+sklepROPUCHA.getOstatniZakup().getKoszt()+"zł");  //Dodac sumowanie!!
         panel_placenie.add(label_kwota);
         panel_placenie.add(new JLabel("Wpisana kwota: "));
         textfield_kwota = new JTextField(10);
         panel_placenie.add(textfield_kwota);
-        label_reszta = new JLabel("Reszta: "+100+"zł");  //Dodac obliczenia!
-        panel_placenie.add(label_reszta);
+        //label_reszta = new JLabel("Reszta: "+100+"zł");  //Dodac obliczenia!
+        //panel_placenie.add(label_reszta);
         radio_rachunek=new JRadioButton("rachunek");
         radio_rachunek.setBackground(Color.decode("#ffffcc"));
         panel_placenie.add(radio_rachunek);
@@ -169,6 +170,8 @@ public class OknoPlatnosci extends JFrame{
         //Przycisk "Zapłać"
         button_zaplac.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                double pomoc= Double.parseDouble(pomocnicza_wpisanakwota);
+                sklepROPUCHA.getOstatniZakup().setZaplaconaKwota(pomoc);
                 if(radio_rachunek.isSelected()){
                     dispose();
                     JFrame frachunek=new OknoRachunek(zalogowanie,uzytkownik,sklepROPUCHA);
@@ -184,6 +187,90 @@ public class OknoPlatnosci extends JFrame{
                     //Okno dialogowe z komunikatem
                     JOptionPane.showMessageDialog(panel_placenie,"Wybierz fakturę/rachunek."); 
                 }
+            }
+        });
+        //Przycisk "1"
+        button_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                pomocnicza_wpisanakwota+="1";
+                textfield_kwota.setText(pomocnicza_wpisanakwota);
+            }
+        });
+        //Przycisk "2"
+        button_2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                pomocnicza_wpisanakwota+="2";
+                textfield_kwota.setText(pomocnicza_wpisanakwota);
+            }
+        });
+        //Przycisk "3"
+        button_3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                pomocnicza_wpisanakwota+="3";
+                textfield_kwota.setText(pomocnicza_wpisanakwota);
+            }
+        });
+        //Przycisk "4"
+        button_4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                pomocnicza_wpisanakwota+="4";
+                textfield_kwota.setText(pomocnicza_wpisanakwota);
+            }
+        });
+        //Przycisk "5"
+        button_5.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                pomocnicza_wpisanakwota+="5";
+                textfield_kwota.setText(pomocnicza_wpisanakwota);
+            }
+        });
+        //Przycisk "6"
+        button_6.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                pomocnicza_wpisanakwota+="6";
+                textfield_kwota.setText(pomocnicza_wpisanakwota);
+            }
+        });
+        //Przycisk "7"
+        button_7.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                pomocnicza_wpisanakwota+="7";
+                textfield_kwota.setText(pomocnicza_wpisanakwota);
+            }
+        });
+        //Przycisk "8"
+        button_8.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                pomocnicza_wpisanakwota+="8";
+                textfield_kwota.setText(pomocnicza_wpisanakwota);
+            }
+        });
+        //Przycisk "9"
+        button_9.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                pomocnicza_wpisanakwota+="9";
+                textfield_kwota.setText(pomocnicza_wpisanakwota);
+            }
+        });
+        //Przycisk "."
+        button_kropka.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                pomocnicza_wpisanakwota+=".";
+                textfield_kwota.setText(pomocnicza_wpisanakwota);
+            }
+        });
+        //Przycisk "usun"
+        button_usun.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                pomocnicza_wpisanakwota="";
+                textfield_kwota.setText(pomocnicza_wpisanakwota);
+            }
+        });
+        //Przycisk "0"
+        button_0.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                pomocnicza_wpisanakwota+="0";
+                textfield_kwota.setText(pomocnicza_wpisanakwota);
             }
         });
         

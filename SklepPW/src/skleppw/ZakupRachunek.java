@@ -11,6 +11,12 @@ public class ZakupRachunek extends Zakup implements Opisy,Serializable{
         super(sklep,laczny_koszt,zaplacona_kwota);
         nazwa="Rachunek";
     }
+    public void setNazwa(String nazwa){
+        this.nazwa=nazwa;
+    }
+    public void setLista(){
+        
+    }
     @Override
     public String opis(){
         double reszta=getZaplaconaKwota()-getKoszt();
@@ -19,15 +25,15 @@ public class ZakupRachunek extends Zakup implements Opisy,Serializable{
     @Override
     public String opisHTML(){
         double reszta=getZaplaconaKwota()-getKoszt();
-        String opis="<html><b>RACHUNEK<br>Lista produktów: </b><br></html>";
+        String opis="<html><b>RACHUNEK<br>Lista produktów: </b><br>";
         DefaultListModel<String> pomoc=getListaTowarowWyswietl();
         for(int i=0;i<pomoc.getSize();i++){
-            opis+=i+"<html>.</html>"+pomoc.elementAt(i)+"<html><br></html>";
+            opis+=i+"."+pomoc.elementAt(i)+"<br>";
         }
-        opis+="<html><b>Koszt: </b></html>"+getKoszt()+"<html>zl<br></html>";
-        opis+="<html><b>Zapłacona kwota: </b></html>"+getZaplaconaKwota()+"<html>zl<br></html>";
-        opis+="<html><b>Wydana reszta: </b></html>"+reszta+"<html>zl<br></html>";
-        opis+="<html><b>Data: </b></html>"+getData()+"<html><br></html>";
+        opis+="<b>Koszt: </b>"+getKoszt()+"zl<br>";
+        opis+="<b>Zapłacona kwota: </b>"+getZaplaconaKwota()+"zl<br>";
+        opis+="<b>Wydana reszta: </b>"+reszta+"zl<br>";
+        opis+="<b>Data: </b>"+getData()+"<br></html>";
         return opis;
     }
 }

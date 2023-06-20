@@ -61,7 +61,7 @@ public class OknoRachunek extends JFrame{
         panel_sklep.setBackground(Color.decode("#ffffcc"));
         panel_sklep1.add(panel_sklep);
         //Wyswietlanie rachunku
-        label_rachunek=new JLabel("<html>Tu bedzie tresc<br>zamowienia.</html>");   //Dodac funkcjonalnosc tego!!
+        label_rachunek=new JLabel("<html>RACHUNEK:<br>"+sklepROPUCHA.getOstatniZakup().opisHTML()+"</html>");   //Dodac funkcjonalnosc tego!!
         label_rachunek.setOpaque(true);
         label_rachunek.setBackground(Color.decode("#FFFFFF"));
         label_rachunek.setPreferredSize(new Dimension(100, 300));

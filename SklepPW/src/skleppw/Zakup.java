@@ -85,15 +85,15 @@ public class Zakup implements Opisy, Serializable{
     @Override
     public String opisHTML(){
         double reszta=getZaplaconaKwota()-getKoszt();
-        String opis="<html>Lista produktów: </b><br></html>";
+        String opis="Lista produktów: </b><br>";
         DefaultListModel<String> pomoc=getListaTowarowWyswietl();
         for(int i=0;i<pomoc.getSize();i++){
-            opis+=i+"<html>.</html>"+pomoc.elementAt(i)+"<html><br></html>";
+            opis=opis+(i+1)+"."+pomoc.elementAt(i)+"<br>";
         }
-        opis+="<html><b>Koszt: </b></html>"+getKoszt()+"<html>zl<br></html>";
-        opis+="<html><b>Zapłacona kwota: </b></html>"+getZaplaconaKwota()+"<html>zl<br></html>";
-        opis+="<html><b>Wydana reszta: </b></html>"+reszta+"<html>zl<br></html>";
-        opis+="<html><b>Data: </b></html>"+getData()+"<html><br></html>";
+        opis=opis+"<b>Koszt: </b>"+getKoszt()+"zl<br>";
+        opis=opis+"<b>Zapłacona kwota: </b>"+getZaplaconaKwota()+"zl<br>";
+        opis=opis+"<b>Wydana reszta: </b>"+reszta+"zl<br>";
+        opis=opis+"<b>Data: </b>"+getData()+"<br>";
         return opis;
     }
     public ZakupionyTowar getTowarOpis(String sprawdzany_opis){

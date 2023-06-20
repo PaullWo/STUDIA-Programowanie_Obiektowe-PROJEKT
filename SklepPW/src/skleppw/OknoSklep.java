@@ -172,6 +172,7 @@ public class OknoSklep extends JFrame{
         button_zaplac.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                sklepROPUCHA.dodajZakup(pomocniczy_zakup);
                 JFrame fplatnosc=new OknoPlatnosci(zalogowanie,uzytkownik,sklepROPUCHA);
             }
         });
@@ -192,7 +193,7 @@ public class OknoSklep extends JFrame{
                 }
             }
         });
-        //Przycisk "Usun"
+        //Przycisk "Dodaj"
         setResizable(false);
         button_dodaj.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

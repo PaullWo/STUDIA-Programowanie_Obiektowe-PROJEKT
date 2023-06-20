@@ -143,4 +143,8 @@ public class Sklep implements Opisy,Serializable{
         }
         return opis;
     }
+    public Zakup getOstatniZakup(){
+        int pomoc= (lista_zakupow.size()-1);
+        return lista_zakupow.get(pomoc);
+    }
 }
