@@ -1,7 +1,7 @@
 package skleppw;
 
 //Klasa uzytkownik, przydatna do logowania
-public class Uzytkownik {
+public class Uzytkownik implements Opisy{
     private String login;
     private String haslo;
     private String imie;
@@ -21,41 +21,7 @@ public class Uzytkownik {
         rok_urodzenia="";
         dzien_urodzenia="";
     }
-    public String getLogin(){
-        return login;
-    }
-    public void setLogin(String login){
-        this.login=login;
-    }
-    public String getHaslo(){
-        return haslo;
-    }
-    public boolean sprawdzLogin(String login){
-        if(this.login.equals(login)){
-            return true;
-        }
-        return false;
-    }
-    public boolean sprawdzLoginHaslo(String login,String haslo){
-        if(this.login.equals(login) && this.haslo.equals(haslo)){
-            return true;
-        }
-        return false;
-    }
-    public boolean sprawdzDane(){
-        if("".equals(imie) || "".equals(nazwisko) || "".equals(miejscowosc) || "".equals(miesiac_urodzenia) || "".equals(rok_urodzenia)){
-            return true;
-        }
-        return false;
-    }
-    public void ustawDane(String imie,String nazwisko,String miejscowosc,String dzien_urodzenia,String miesiac_urodzenia,String rok_urodzenia){
-        this.imie=imie;
-        this.nazwisko=nazwisko;
-        this.miejscowosc=miejscowosc;
-        this.dzien_urodzenia=dzien_urodzenia;
-        this.miesiac_urodzenia=miesiac_urodzenia;
-        this.rok_urodzenia=rok_urodzenia;
-    }
+    //Podstawowe metody
     public String getImie(){
         return imie;
     }
@@ -74,7 +40,53 @@ public class Uzytkownik {
     public String getRok(){
         return rok_urodzenia;
     }
+    public String getLogin(){
+        return login;
+    }
+    public String getHaslo(){
+        return haslo;
+    }
+    public void setLogin(String login){
+        this.login=login;
+    }
+    public void setHaslo(String haslo){
+        this.haslo=haslo;
+    }
+    @Override
     public String opis(){
         return imie+" "+nazwisko+", "+miejscowosc+", "+dzien_urodzenia+"."+miesiac_urodzenia+"."+rok_urodzenia;
+    }
+    @Override
+    public String opisHTML(){
+        return "<html><b>Imię: </b></html>"+imie+"<html><br></html>"+"<html><b>Nazwisko: </b></html>"+nazwisko+"<html><br></html>"+
+                "<html><b>Miejsce zamieszkania: </b></html>"+miejscowosc+"<html><br></html>"+"<html><b>Data urodzenia: </b></html>"+
+                dzien_urodzenia+"."+miesiac_urodzenia+"."+rok_urodzenia+"<html><br></html>";
+    }
+    public void ustawDane(String imie,String nazwisko,String miejscowosc,String dzien_urodzenia,String miesiac_urodzenia,String rok_urodzenia){
+        this.imie=imie;
+        this.nazwisko=nazwisko;
+        this.miejscowosc=miejscowosc;
+        this.dzien_urodzenia=dzien_urodzenia;
+        this.miesiac_urodzenia=miesiac_urodzenia;
+        this.rok_urodzenia=rok_urodzenia;
+    }
+    //Metody do logowania
+    public boolean sprawdzLogin(String login){
+        if(this.login.equals(login)){
+            return true;
+        }
+        return false;
+    }
+    public boolean sprawdzLoginHaslo(String login,String haslo){
+        if(this.login.equals(login) && this.haslo.equals(haslo)){
+            return true;
+        }
+        return false;
+    }
+    public boolean sprawdzDane(){
+        if("".equals(imie) || "".equals(nazwisko) || "".equals(miejscowosc) || "".equals(miesiac_urodzenia) || "".equals(rok_urodzenia)){
+            return true;
+        }
+        return false;
     }
 }

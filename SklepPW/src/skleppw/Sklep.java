@@ -6,11 +6,41 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class Sklep {
+public class Sklep implements Opisy{
+    private String nazwa;
+    private String adres;
     private List<Uzytkownik> lista_uzytkownikow = new ArrayList<>();
-    private DefaultListModel<TowarSklep> lista_towarow;  
+    private DefaultListModel<TowarSklep> lista_towarow; 
+    
     public Sklep(){
         lista_towarow = new DefaultListModel<>();
+    }
+    public Sklep(String nazwa,String adres){
+        this.nazwa=nazwa;
+        this.adres=adres;
+        lista_towarow = new DefaultListModel<>();
+    }
+    
+    //Podstawowe metody
+    public String getNazwa(){
+        return nazwa;
+    }
+    public String getAdres(){
+        return adres;
+    }
+    public void setNazwa(String nazwa){
+        this.nazwa=nazwa;
+    }
+    public void setAdres(String adres){
+       this.adres=adres;
+    }
+    @Override
+    public String opis(){
+        return "Sklep "+nazwa+" w "+adres+".";
+    }
+    public String opisHTML(){
+        return "<html><b>Nazwa sklepu:<b></html>"+nazwa+"<html><br></html>"
+                + "<html><b>Adres sklepu:<b></html>"+adres+"<html><br></html>";
     }
     
     //Obsluga towarow
